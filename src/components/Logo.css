@@ -1,4 +1,9 @@
+.Logo {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 10px;
+}
+
 .transferifyLogo {
     width: 200px;
-    margin: 10px;
 }
