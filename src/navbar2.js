@@ -47,10 +47,10 @@ class Menu extends Component {
                 {this.state.open && (
                     <div class = "dropdown">
                         <ul>
-                            <li>Option 1</li>
-                            <li>Option 2</li>
-                            <li>Option 3</li>
-                            <li>Option 4</li>
+                            <li>Home</li>
+                            <li>Student Directory</li>
+                            <li>Your Profile</li>
+                            <li>Class Planner</li>
                         </ul>
                     </div>
                 ) }
