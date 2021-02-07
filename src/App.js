@@ -1,12 +1,16 @@
 import './App.css';
 import Logo from './components/Logo.js'
-import Card from './navbar.js';
+import Menu from './navbar2.js';
 
 function App() {
   return (
-    <div className="App">
-      <Logo />
-      <Card />
+     <div>
+        <div className="App">
+          <Logo />
+        </div>
+        <div>
+            <Menu />
+        </div>
     </div>
   );
 }
