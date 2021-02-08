@@ -5,11 +5,11 @@ import Menu from './navbar2.js';
 function App() {
   return (
      <div>
+         <div className="float-child">
+             <Menu />
+         </div>
         <div className="App">
           <Logo />
-        </div>
-        <div>
-            <Menu />
         </div>
     </div>
   );
