@@ -38,10 +38,11 @@ function Login() {
           
         </Form.Group>
         <Button size="lg" type="submit" disabled={!validateForm()} block>
-          Login
+          <b>Login</b>
         </Button>
       </Form>
       
+      <a href="">Create an account</a>
     </div>
   );
 }

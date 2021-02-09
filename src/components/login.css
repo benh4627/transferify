@@ -1,13 +1,17 @@
-body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;}
-* {box-sizing: border-box;}
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  box-sizing: border-box;
+}
 
 @media all and (min-width: 480px) {
   .Login {
-    padding: 60px 0;
+    padding: 20px 0;
   }
 
   .Login form {
@@ -18,14 +22,17 @@ body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxy
 
 /* Button style */
 button {
-  background-color: rgb(50,131,191);
+  background-color: rgb(39,116,174);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 40%;
   opacity: 0.9;
+  border-radius: 25px;
+  justify-items: center;
+  text-align: center;
 }
 
 /* Input fields */
@@ -42,4 +49,14 @@ input[type=email], input[type=password] {
 input[type=email]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
+}
+
+.Login a {
+  text-decoration: none;
+  font-size: 11px;
+  color: rgb(75, 75, 75);
+}
+
+.Login a:hover {
+  color: rgb(150, 150, 150);
 }
