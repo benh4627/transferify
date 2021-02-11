@@ -4,20 +4,39 @@ import {Card} from 'react-bootstrap';
 import {ListGroup} from 'react-bootstrap';
 import "./classcard.css";
 
-function ClassCard() {
+function PrereqList(props) {
+    var isEmpty = false;
+    var listItems = [];
+    if (props.prereqs.length == 0) {
+        isEmpty = true;
+        return(
+            <Card.Subtitle>No Prereqs!</Card.Subtitle>
+        );
+    }
+    else {
+        for (var i = 0; i < props.prereqs.length; i++) {
+            listItems.push(<ListGroup.Item>{props.prereqs[i]}</ListGroup.Item>);
+        }
+    }
     return(
-        <Card style={{ width: '40rem' , font-size: 50rem,}}>
-            <Card.Header>Class Name</Card.Header>
+        <ListGroup variant="flush">
+            {listItems}
+        </ListGroup>
+    );
+}
+
+function ClassCard(props) {
+
+    return(
+        <Card style={{ width: '40rem'}}>
+            <Card.Header>{props.className}</Card.Header>
             <Card.Body>
                 <div className="description">
-                    <Card.Subtitle>Graduation Requirement Type</Card.Subtitle>
-                    <Card.Text>Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</Card.Text>
+                    <Card.Subtitle>{props.classType}</Card.Subtitle>
+                    <Card.Text style={{ fontSize: '1.1rem'}}>{props.classDescription}</Card.Text>
                 </div>
                 <Card.Subtitle>Prerequisites:</Card.Subtitle>
-                <ListGroup variant="flush">
-                    <ListGroup.Item>Prereq 1</ListGroup.Item>
-                    <ListGroup.Item>Prereq 2</ListGroup.Item>
-                </ListGroup>
+                <PrereqList prereqs = {props.prereqs}/>
                 <Button variant="primary">Add to Planner</Button>
             </Card.Body>
         </Card>

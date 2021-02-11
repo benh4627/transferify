@@ -11,9 +11,5 @@ body {
 }
 
 .description {
-    margin-bottom: 2rem;
-};
-
-Card.Text {
-    font-size: 50rem;
+    margin-bottom: 1.5rem;
 };
