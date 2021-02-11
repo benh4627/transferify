@@ -5,12 +5,10 @@ import {ListGroup} from 'react-bootstrap';
 import "./classcard.css";
 
 function PrereqList(props) {
-    var isEmpty = false;
     var listItems = [];
     if (props.prereqs.length == 0) {
-        isEmpty = true;
         return(
-            <Card.Subtitle>No Prereqs!</Card.Subtitle>
+            <Card.Text style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>None!</Card.Text>
         );
     }
     else {

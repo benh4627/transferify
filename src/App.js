@@ -14,6 +14,12 @@ function App() {
                 classDescription = "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."
                 prereqs = {["prereq 1", "prereq 2"]}
             />
+            <ClassCard
+                className="Class 2"
+                classType = "Upper Division Course"
+                classDescription = "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante."
+                prereqs = {[]}
+            />
         </div>
     );
 }
