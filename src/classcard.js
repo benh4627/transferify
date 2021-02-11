@@ -26,7 +26,7 @@ function PrereqList(props) {
 function ClassCard(props) {
 
     return(
-        <Card style={{ width: '40rem'}}>
+        <Card style={{ width: '40rem', margin: '1.1rem'}}>
             <Card.Header>{props.className}</Card.Header>
             <Card.Body>
                 <div className="description">
