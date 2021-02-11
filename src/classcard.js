@@ -30,7 +30,7 @@ function ClassCard(props) {
             <Card.Header>{props.className}</Card.Header>
             <Card.Body>
                 <div className="description">
-                    <Card.Subtitle>{props.classType}</Card.Subtitle>
+                    <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.classType}</Card.Subtitle>
                     <Card.Text style={{ fontSize: '1.1rem'}}>{props.classDescription}</Card.Text>
                 </div>
                 <Card.Subtitle>Prerequisites:</Card.Subtitle>
