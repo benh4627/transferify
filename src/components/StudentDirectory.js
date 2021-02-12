@@ -1,138 +1,83 @@
 import React from 'react';
 import './StudentDirectory.css';
+import Logo from './Logo.js';
+
+import studentPic from '../images/Paul_Eggert.jpg';
+import { render } from '@testing-library/react';
 
 const studentList = [];
 class student {
-    constructor(name, major, year, email) {
-        this.name = name;
+    constructor(firstName, lastName, major, year, email) {
+        this.image = studentPic;
+        this.firstName = firstName;
+        this.lastName = lastName
         this.major = major;
         this.year = year;
         this.email = email;
     }
 };
-var person = new student('A', 'CS', 2020, '@@');
-studentList.push(person);
-person = new student('B', 'CS', 2021, '@@');
-studentList.push(person);
-person = new student('C', 'CS', 2022, '@@');
-studentList.push(person);
-person = new student('D', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('E', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('F', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('G', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('B', 'CS', 2021, '@@');
-studentList.push(person);
-person = new student('C', 'CS', 2022, '@@');
-studentList.push(person);
-person = new student('D', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('E', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('F', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('G', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('B', 'CS', 2021, '@@');
-studentList.push(person);
-person = new student('C', 'CS', 2022, '@@');
-studentList.push(person);
-person = new student('D', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('E', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('F', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('G', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('B', 'CS', 2021, '@@');
-studentList.push(person);
-person = new student('C', 'CS', 2022, '@@');
-studentList.push(person);
-person = new student('D', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('E', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('F', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('G', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('B', 'CS', 2021, '@@');
-studentList.push(person);
-person = new student('C', 'CS', 2022, '@@');
-studentList.push(person);
-person = new student('D', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('E', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('F', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('G', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('B', 'CS', 2021, '@@');
-studentList.push(person);
-person = new student('C', 'CS', 2022, '@@');
-studentList.push(person);
-person = new student('D', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('E', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('F', 'CS', 2023, '@@');
-studentList.push(person);
-person = new student('G', 'CS', 2023, '@@');
-studentList.push(person);
+
+for (let i = 0 ; i < 40 ; i++) {
+    let person = new student('First', 'Last', 'Computer Science', 2020+i, 'emailaddress@gmail.com');
+    studentList.push(person);
+}
 console.log(studentList);
 
 //---------------------------------------
 
-function Student(props) {
+function StudentCard(props) {
     return (
-        <div class='studentRow'>
-            <strong>{props.student.name}</strong>
-            <p>{props.student.major}</p>
-            <p>{props.student.year}</p>
-            <button>{props.student.email}</button>
-            <p><a href="">Visit</a></p>
-        </div>
+        <button type='button' class='studentCard'>
+            <div class='studentName'>
+                <b>{props.student.firstName} {props.student.lastName}</b>
+            </div> <br/>
+            <img class='studentPicture' src={props.student.image} />
+            <div class='studentInfo'>
+                <p>Major: {props.student.major}</p>
+                <p>Year: {props.student.year}</p> 
+                <p>Email: <a href="">{props.student.email}</a></p>
+            </div>
+        </button>
     );
 }
 
-function StudentRow(props) {
+function StudentDirectory(props) {
     let ret = [];
-    let t = true;
-    for (let i=0; i<studentList.length; i++){
-        t = (i%5==0? !t: t);
-        let setStyle = (t? 'studentEvenRow': 'studentOddRow' )
+    for (let i = 0 ; i < studentList.length ; i++) {
         ret.push(
-            <div class={setStyle}>
-                <Student student={studentList[i]}/>
-            </div>);
+            <StudentCard student={studentList[i]}/>
+        );
     }
     return ret;
 }
 
-function StudentDirectory() {
+function SearchStudentList() {
+    let ret = [];
+    var search = document.getElementById("search");
+    for (let i = 0 ; i < studentList.length ; i++) {
+        if (search==studentList[i].lastName || search==studentList[i].firstName)
+        ret.push(
+            <StudentCard student={studentList[i]}/>
+        );
+    }
+    console.log(ret);
+    return ret;
+}
+
+function StudentDirectoryPage() {
     return (
         <div>
-            <center>
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"></input>
-                <br /><br />
-            </center>
-            <ul id='header' class='headerStyle'>
-                <div>Name</div>
-                <div>Major</div>
-                <div>Year</div>
-                <div>Email</div>
-                <div>Site</div>
-            </ul>
-            <ul id='stdList'>
-                <StudentRow />
-            </ul>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+            <form id='search' class='top'>
+                <Logo />
+                <input class='searchBar' type="text" placeholder="Search"></input>
+                <button type="submit" onClick='SearchStudentList'><i class="fa fa-search"></i></button>
+            </form>
+            <div id='stduentDirectory' class='studentDirectory'>
+                <StudentDirectory />
+            </div>
         </div>
     )
 }
 
-export default StudentDirectory;
+export default StudentDirectoryPage;
