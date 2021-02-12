@@ -1,0 +1,120 @@
+LOWER DIVISION:
+
+31.  Introduction to Computer Science I
+Units: 4.0
+
+Lecture, four hours; discussion, two hours; outside study, six hours. Introduction to computer science via theory, applications, and programming. Basic data types, operators and control structures. Input/output. Procedural and data abstraction. Introduction to object-oriented software development. Functions, recursion. Arrays, strings, pointers. Abstract data types, object-oriented programming. Examples and exercises from computer science theory and applications. Letter grading.
+
+32. Introduction to Computer Science II
+Units: 4.0
+
+Lecture, four hours; discussion, two hours; outside study, six hours. Enforced requisite: course 31. Object-oriented software development. Abstract data type definition and use. Overloading, inheritance, polymorphism. Object-oriented view of data structures: stacks, queues, lists. Algorithm analysis. Trees, graphs, and associated algorithms. Searching and sorting. Case studies and exercises from computer science applications. Letter grading.
+
+33. Introduction to Computer Organization
+Units: 5.0
+
+Lecture, four hours; discussion, two hours; outside study, nine hours. Enforced requisite: course 32. Introductory course on computer architecture, assembly language, and operating systems fundamentals. Number systems, machine language, and assembly language. Procedure calls, stacks, interrupts, and traps. Assemblers, linkers, and loaders. Operating systems concepts: processes and process management, input/output (I/O) programming, memory management, file systems. Letter grading.
+
+35L. Software Construction
+Units: 4.0
+
+Lecture, four hours; discussion, two hours; outside study, six hours. Requisite: course 31. Fundamentals of tools and environments for software construction projects, particularly open-source platforms used in upper-division computer science courses. Software practice through collaborative student project. Letter grading.
+
+or
+
+97. Variable Topics in Computer Science
+Units: 1.0 to 4.0 (Must take for 4 units)
+
+Lecture, one to four hours; discussion, zero to two hours. Designed for freshmen/sophomores. Variable topics in computer science not covered in regular computer science courses. May be repeated once for credit with topic or instructor change. Letter grading.
+
+M51A. Logic Design of Digital Systems
+Units: 4.0
+
+(Same as Electrical and Computer Engineering M16.) Lecture, four hours; discussion, two hours; outside study, six hours. Introduction to digital systems. Specification and implementation of combinational and sequential systems. Standard logic modules and programmable logic arrays. Specification and implementation of algorithmic systems: data and control sections. Number systems and arithmetic algorithms. Error control codes for digital information. Letter grading.
+
+UPPER DIVISION:
+
+111. Operating Systems Principles
+Units: 5.0
+
+Lecture, four hours; laboratory, two hours; outside study, nine hours. Enforced requisites: courses 32, 33, 35L. Introduction to operating systems design and evaluation. Computer software systems performance, robustness, and functionality. Kernel structure, bootstrapping, input/output (I/O) devices and interrupts. Processes and threads; address spaces, memory management, and virtual memory. Scheduling, synchronization. File systems: layout, performance, robustness. Distributed systems: networking, remote procedure call (RPC), asynchronous RPC, distributed file systems, transactions. Protection and security. Exercises involving applications using, and internals of, real-world operating systems. Letter grading.
+
+
+118. Computer Network Fundamentals
+Units: 4.0
+
+Lecture, four hours; discussion, two hours; outside study, six hours. Enforced requisite: course 111. Designed for juniors/seniors. Introduction to design and performance evaluation of computer networks, including such topics as what protocols are, layered network architecture, Internet protocol architecture, network applications, transport protocols, routing algorithms and protocols, internetworking, congestion control, and link layer protocols including Ethernet and wireless channels. Letter grading.
+
+131. Programming Languages
+Units: 4.0
+
+Lecture, four hours; laboratory, two hours; outside study, six hours. Enforced requisites: courses 33, 35L. Basic concepts in design and use of programming languages, including abstraction, modularity, control mechanisms, types, declarations, syntax, and semantics. Study of several different language paradigms, including functional, object-oriented, and logic programming. Letter grading.
+
+M151B. Computer Systems Architecture
+Units: 4.0
+
+(Same as Electrical and Computer Engineering M116C.) Lecture, four hours; discussion, two hours; outside study, six hours. Enforced requisites: courses 33, and M51A or Electrical and Computer Engineering M16. Recommended: courses 111, and M152A or Electrical and Computer Engineering M116L. Computer system organization and design, implementation of CPU datapath and control, instruction set design, memory hierarchy (caches, main memory, virtual memory) organization and management, input/output subsystems (bus structures, interrupts, DMA), performance evaluation, pipelined processors. Letter grading.
+
+M152A. Introductory Digital Design Laboratory
+Units: 2.0
+
+(Same as Electrical and Computer Engineering M116L.) Laboratory, four hours; outside study, two hours. Enforced requisite: course M51A or Electrical and Computer Engineering M16. Hands-on design, implementation, and debugging of digital logic circuits, use of computer-aided design tools for schematic capture and simulation, implementation of complex circuits using programmed array logic, design projects. Letter grading.
+
+152B. Digital Design Project Laboratory
+Units: 4.0
+
+Laboratory, four hours; discussion, two hours; outside study, six hours. Enforced requisite: course M151B or Electrical Engineering M116C. Recommended: Engineering 183EW or 185EW. Limited to seniors. Design and implementation of complex digital subsystems using field-programmable gate arrays (e.g., processors, special-purpose processors, device controllers, and input/output interfaces). Students work in teams to develop and implement designs and to document and give oral presentations of their work. Letter grading.
+
+180. Introduction to Algorithms and Complexity
+Units: 4.0
+
+Lecture, four hours; discussion, two hours; outside study, six hours. Enforced requisites: course 32, Mathematics 61. Designed for junior/senior Computer Science majors. Introduction to design and analysis of algorithms. Design techniques: divide-and-conquer, greedy method, dynamic programming; selection of prototypical algorithms; choice of data structures and representations; complexity measures: time, space, upper, lower bounds, asymptotic complexity; NP-completeness. Letter grading.
+
+181. Introduction to Formal Languages and Automata Theory
+Units: 4.0
+
+Lecture, four hours; discussion, two hours; outside study, six hours. Enforced requisite: course 180. Designed for junior/senior Computer Science majors. Grammars, automata, and languages. Finite-state languages and finite-state automata. Context-free languages and pushdown story automata. Unrestricted rewriting systems, recursively enumerable and recursive languages, and Turing machines. Closure properties, pumping lemmas, and decision algorithms. Introduction to computability. Letter grading.
+
+
++ Computer Science Elective 3 classes
+
+
+EC ENG
+
+3. Introduction to Electrical Engineering
+Units: 4.0
+
+(Formerly numbered Electrical Engineering 3.) Lecture, two hours; laboratory, two hours; outside study, eight hours. Introduction to field of electrical engineering. Basic circuits techniques with application to explanation of electrical engineering inventions such as telecommunications, electrical grid, automatic computing and control, and enabling device technology. Research frontiers of electrical engineering. Introduction to measurement and design of electrical circuits. Letter grading.
+
+100. Electrical and Electronic Circuits
+Units: 4.0
+
+(Formerly numbered Electrical Engineering 100.) Lecture, three hours; discussion, one hour; outside study, eight hours. Requisites: Mathematics 33A, 33B or Mechanical and Aerospace Engineering 82, Physics 1C. Not open for credit to students with credit for course 110. Electrical quantities, linear circuit elements, circuit principles, signal waveforms, transient and steady state circuit behavior, semiconductor diodes and transistors, small signal models, and operational amplifiers. Letter grading.
+
+102. Systems and Signals
+Units: 4.0
+
+(Formerly numbered Electrical Engineering 102.) Lecture, four hours; discussion, one hour; outside study, seven hours. Requisite: Mathematics 33A. Corequisite: Mathematics 33B. Elements of differential equations, first- and second-order equations, variation of parameters method and method of undetermined coefficients, existence and uniqueness. Systems: input/output description, linearity, time-invariance, and causality. Impulse response functions, superposition and convolution integrals. Laplace transforms and system functions. Fourier series and transforms. Frequency responses, responses of systems to periodic signals. Sampling theorem. Letter grading.
+
+115C. Digital Electronic Circuits
+Units: 4.0
+
+(Formerly numbered Electrical Engineering 115C.) Lecture, four hours; discussion, one hour; outside study, seven hours. Requisites: course 100 or 115A, and Computer Science M51A. Transistor-level digital circuit analysis and design. Modern logic families (static CMOS, pass-transistor, dynamic logic), integrated circuit (IC) layout, digital circuits (logic gates, flipflops/latches, counters, etc.), computer-aided simulation of digital circuits. Letter grading.
+
+131A. Probability and Statistics
+Units: 4.0
+
+(Formerly numbered Electrical Engineering 131A.) Lecture, four hours; discussion, one hour; outside study, 10 hours. Requisites: course 102 (enforced), Mathematics 32B, 33B. Introduction to basic concepts of probability, including random variables and vectors, distributions and densities, moments, characteristic functions, and limit theorems. Applications to communication, control, and signal processing. Introduction to computer simulation and generation of random events. Letter grading.
+
+or Other Stats equivalient Class
+
++ One additional ECE Elective
+
+Other Checks:
+
+Engineering Ethics:
+181/182/183
+
+Technical Breadth:
+	Include options and course descriptions
+	Maybe research/fields that are related to spark interest
