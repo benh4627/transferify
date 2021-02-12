@@ -40,14 +40,10 @@ function App() {
                             classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
                             prereqs:[]}];
     return(
-        <div>
-            <MoreDeets/>
+        <div className="App">
+            <div className="HomeModule"><Home /></div>
         </div>
     );
 }
 
 export default App;
-
-{/*<div className="App">
-    <div className="HomeModule"><Home /></div>
-</div><ClassCardGroup classList = {classList}/>*/}
