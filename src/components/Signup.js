@@ -41,7 +41,7 @@ function Signup() {
                 </label>
                   
                 <div>
-                  <button type="submit">Submit</button>
+                  <button type="submit">Sign In</button>
                 </div>
                 
                 <span>{error}</span>
