@@ -1,0 +1,52 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  box-sizing: border-box;
+}
+
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 20px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
+/* Button style */
+button {
+  background-color: rgb(39,116,174);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+  opacity: 0.9;
+  border-radius: 25px;
+  justify-items: center;
+  text-align: center;
+}
+
+/* Input fields */
+input[type=first_name], input[type=last_name], input[type=email], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Darken the color when an input box get focus */
+input[type=first_name]:focus, input[type=last_name]:focus, input[type=email]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}

@@ -1,50 +1,53 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import "./login.css";
+import React, { useState, useContext } from 'react';
+import { AuthContext } from "../App";
+import firebase from 'firebase'
+import PropTypes from 'prop-types';
+import './login.css';
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+require('firebase/auth')
 
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
-
-  return (
-    <div className="Login">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          
-        </Form.Group>
-        <Button size="lg" type="submit" disabled={!validateForm()} block>
-          <b>Login</b>
-        </Button>
-      </Form>
-      
-      <a href="">Create an account</a>
+const Login = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setErrors] = useState();
+  
+  const Auth = useContext(AuthContext);
+  
+  const handleSubmit = e => {
+    e.preventDefault();
+    firebase
+       .auth()
+       .signInWithEmailAndPassword(email, password)
+       .then(res => {
+          console.log(res)
+          if (res.user) Auth.setLoggedIn(true);
+       })
+       .catch(e => {
+          setErrors(e.message);
+       });
+  };
+  
+  return(
+    <div>
+      <h1>Log In</h1>
+      <form onSubmit={e => handleSubmit(e)}>
+        <label>
+          <p>Email</p>
+          <input type="email" onChange={e => setEmail(e.target.value)} />
+        </label>
+        <label>
+          <p>Password</p>
+          <input type="password" onChange={e => setPassword(e.target.value)} />
+        </label>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <a href="/signup">
+        Create an account
+      </a>
     </div>
-  );
+  )
 }
 
 export default Login;
