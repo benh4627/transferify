@@ -1,49 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import firebaseConfig from './firebase.config';
+import firebase from "firebase/app";
 
 import Menu from './components/navbar2.js';
 import Home from './components/Home.js';
-import ClassCardGroup from './classcard.js';
-import MoreDeets from './test.js';
-//import './App.css'
+import './App.css'
+
+
+firebase.initializeApp(firebaseConfig);
+
+export const AuthContext = React.createContext(null);
+
 
 function App() {
-    const classList = [{className:"Class 1",
-                            classType: "Lower Division Course",
-                            classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
-                            prereqs: ["prereq 1", "prereq 2"]},
-                       {className: "Class 2",
-                            classType: "Upper Division Course",
-                            classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
-                            prereqs:[]},
-                       {className:"Class 1",
-                            classType: "Lower Division Course",
-                            classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
-                            prereqs: ["prereq 1", "prereq 2"]},
-                       {className: "Class 2",
-                            classType: "Upper Division Course",
-                            classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
-                            prereqs:[]},
-                       {className:"Class 1",
-                            classType: "Lower Division Course",
-                            classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
-                            prereqs: ["prereq 1", "prereq 2"]},
-                       {className: "Class 2",
-                            classType: "Upper Division Course",
-                            classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
-                            prereqs:[]},
-                       {className:"Class 1",
-                            classType: "Lower Division Course",
-                            classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
-                            prereqs: ["prereq 1", "prereq 2"]},
-                       {className: "Class 2",
-                            classType: "Upper Division Course",
-                            classDescription: "Course Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.",
-                            prereqs:[]}];
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    
     return(
-        <div className="App">
-            <div className="HomeModule"><Home /></div>
-        </div>
+        <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
+           <div className="App">
+               <div className="HomeModule"><Home /></div>
+
+           </div>
+        </AuthContext.Provider>
     );
+    
 }
 
 export default App;
