@@ -13,3 +13,16 @@ body {
 .description {
     margin-bottom: 1.5rem;
 };
+.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+};
+.grid > div {
+  flex-basis: calc(50% - 40px);
+}
+
+.box {
+  margin: 20px;
+}
