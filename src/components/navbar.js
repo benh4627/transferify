@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './navbar.css';
 
 class Menu extends Component {
@@ -47,9 +49,20 @@ class Menu extends Component {
                 {this.state.open && (
                     <div class = "dropdown">
                         <ul>
-                            <li>Home</li>
-                            <li>Student Directory</li>
+                            <li>
+                              <Link to="/">
+                                 Home
+                              </Link>
+                            </li>
+                            
+                            <li>
+                              <Link to="/studentdirectory">
+                                 Student Directory
+                              </Link>
+                            </li>
+                            
                             <li>Your Profile</li>
+                            
                             <li>Class Planner</li>
                         </ul>
                     </div>
@@ -59,4 +72,5 @@ class Menu extends Component {
     }
 }
 
-export default Menu;
+export default withRouter(Menu);
+
