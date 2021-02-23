@@ -12,18 +12,19 @@ import "./classcard.css";
 const data = require('./CourseInformation.json');
 
 class ClassData {
-     constructor(className, classType, classDescription, prereqs) {
+     constructor(className, classType, classDescription, prereqs, units) {
          this.className = className;
          this.classType = classType;
          this.classDescription = classDescription;
          this.prereqs = prereqs;
+         this.units = units;
      }
  };
 const classList = [];
 
 for (var i = 0; i < data.length; i++) {
     let currData = data[i];
-    let newClass = new ClassData(currData.ClassName, currData.ClassType, currData.ClassDescription, currData.prereqs);
+    let newClass = new ClassData(currData.ClassName, currData.ClassType, currData.ClassDescription, currData.prereqs, currData.Units);
     classList.push(newClass);
 }
 console.log(classList[0]);
@@ -51,9 +52,10 @@ function PrereqList(props) {
 function ClassCard(props) {
 
     return(
-        <Card style={{ width: '18rem', margin: '1.1rem'}} className="box">
+        <Card style={{ width: '25rem', margin: '1.1rem'}} className="box">
             <Card.Header>{props.ClassData.className}</Card.Header>
             <Card.Body>
+                <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.units} Units</Card.Subtitle>
                 <div className="description">
                     <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
                     <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
