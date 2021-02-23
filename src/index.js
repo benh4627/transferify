@@ -4,10 +4,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClassCardGroup from './classcard.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ClassCardGroup />
   </React.StrictMode>,
   document.getElementById('root')
 );
