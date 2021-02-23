@@ -28,14 +28,15 @@ for (var i = 0; i < data.length; i++) {
 
 function PrereqList(props) {
     var listItems = [];
-    if (props.prereqs.length == 0) {
+    if (props.prereqs == "N/A") {
         return(
             <Card.Text style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>None!</Card.Text>
         );
     }
     else {
-        for (var i = 0; i < props.prereqs.length; i++) {
-            listItems.push(<ListGroup.Item>{props.prereqs[i]}</ListGroup.Item>);
+        var split_reqs = props.prereqs.split(',')
+        for (var i = 0; i < split_reqs.length; i++) {
+            listItems.push(<ListGroup.Item>{split_reqs[i]}</ListGroup.Item>);
         }
     }
     return(
