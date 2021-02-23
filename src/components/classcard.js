@@ -12,19 +12,22 @@ import "./classcard.css";
 const data = require('./CourseInformation.json');
 
 class ClassData {
-     constructor(className, classType, classDescription, prereqs) {
+     constructor(className, classType, classDescription, prereqs, units) {
          this.className = className;
          this.classType = classType;
          this.classDescription = classDescription;
          this.prereqs = prereqs;
+         this.units = units;
      }
  };
 const classList = [];
 
 for (var i = 0; i < data.length; i++) {
-     let newClass = new ClassData(data.className, data.classType, data.classDescription, data.prereqs);
-     classList.push(newClass);
+    let currData = data[i];
+    let newClass = new ClassData(currData.ClassName, currData.ClassType, currData.ClassDescription, currData.prereqs, currData.Units);
+    classList.push(newClass);
 }
+console.log(classList[0]);
 
 function PrereqList(props) {
     var listItems = [];
@@ -49,34 +52,38 @@ function PrereqList(props) {
 function ClassCard(props) {
 
     return(
-        <Card style={{ width: '18rem', margin: '1.1rem'}} className="box">
-            <Card.Header>{props.class.className}</Card.Header>
+        <Card style={{ width: '25rem', margin: '1.1rem'}} className="box">
+            <Card.Header>{props.ClassData.className}</Card.Header>
             <Card.Body>
+                <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.units} Units</Card.Subtitle>
                 <div className="description">
-                    <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.class.classType}</Card.Subtitle>
-                    <Card.Text style={{ fontSize: '1.1rem'}}>{props.class.classDescription}</Card.Text>
+                    <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
+                    <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
                 </div>
                 <Card.Subtitle>Prerequisites:</Card.Subtitle>
-                <PrereqList prereqs = {props.class.prereqs}/>
+                <PrereqList prereqs = {props.ClassData.prereqs}/>
                 <Button variant="primary">Add to Planner</Button>
             </Card.Body>
         </Card>
     );
 }
 
-function ClassCardGroup(props) {
+function CardGroup(props) {
     var listItems = [];
 
     for (var i = 0; i < classList.length; i++) {
-        listItems.push(<ClassCard class = {classList[i]}/>);
+        listItems.push(<ClassCard ClassData = {classList[i]}/>);
 
     }
+    return listItems;
+}
+
+function ClassCardGroup(props) {
 
     return(
-
-            <div className = "grid">
-                <listItems/>
-            </div>
+        <div className = "grid">
+            <CardGroup />
+        </div>
 
     );
 }
