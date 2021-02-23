@@ -4,7 +4,7 @@ import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 
 import Home from "./components/Home";
-import Login from "./components/Login";
+import Login from "./components/login";
 import Signup from "./components/Signup";
 import Logo from "./components/Logo";
 import "./App.css";

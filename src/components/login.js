@@ -2,7 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import { AuthContext } from "../Auth.js";
-import './Login.css';
+import './login.css';
 
 const Login = ({ history }) => {
   const handleSubmit = useCallback(
