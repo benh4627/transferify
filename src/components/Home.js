@@ -1,32 +1,23 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import app from "../base";
 
-import './Home.css';
-import Logo from './Logo.js';
-import Login from './login.js';
-import Dashboard from './Dashboard/Dashboard.js';
-import Signup from './Signup.js';
+import Menu from "./navbar.js"
+import "./Home.css";
+import StudentDirectoryPage from "./StudentDirectory.js"
+//import ClassCardGroup from "./classcard.js"
 
-function Home() {
+const Home = () => {
   return (
-    <div className="Home center">
-          {/*This will be the homepage -- all other components will be on other pages*/}
-        <Logo />
-        <BrowserRouter>
-          <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-            <Route exact path="/signup">
-              <Signup />
-            </Route>  
-          </Switch>
-        </BrowserRouter>
-    </div>
+    <Router>
+      <h1>Home</h1>
+      <Menu />
+        <div>
+          <Route exact path="/studentdirectory" component={StudentDirectoryPage} />
+        </div>
+      <button onClick={() => app.auth().signOut()}>Sign out</button>
+    </Router>
   );
-}
+};
 
 export default Home;

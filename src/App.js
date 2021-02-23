@@ -1,30 +1,27 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import firebaseConfig from './firebase.config';
-import firebase from "firebase/app";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { AuthProvider } from "./Auth";
+import PrivateRoute from "./PrivateRoute";
 
-import Menu from './components/navbar2.js';
-import Home from './components/Home.js';
-import './App.css'
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Logo from "./components/Logo";
+import "./App.css";
 
-
-firebase.initializeApp(firebaseConfig);
-
-export const AuthContext = React.createContext(null);
-
-
-function App() {
-    const [isLoggedIn, setLoggedIn] = useState(false);
-    
-    return(
-        <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>
-           <div className="App">
-               <div className="HomeModule"><Home /></div>
-
-           </div>
-        </AuthContext.Provider>
-    );
-    
-}
+const App = () => {
+  return (
+    <AuthProvider>
+      <Router>
+        <Logo />
+        <div>
+          <PrivateRoute exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+        </div>
+      </Router>
+    </AuthProvider>
+  );
+};
 
 export default App;
