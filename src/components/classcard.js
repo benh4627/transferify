@@ -106,9 +106,9 @@ function ClassCardGroup(props) {
     );
 }
 
-export default ClassCardGroup;
+//export default ClassCardGroup;
 
-//export default withRouter(ClassCardGroup);
+export default withRouter(ClassCardGroup);
 
 {/*
     const renderCard = (card, index) => {
