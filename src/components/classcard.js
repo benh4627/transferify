@@ -27,7 +27,6 @@ for (var i = 0; i < data.length; i++) {
     let newClass = new ClassData(currData.ClassName, currData.ClassType, currData.ClassDescription, currData.prereqs, currData.Units);
     classList.push(newClass);
 }
-console.log(classList[0]);
 
 function PrereqList(props) {
     var listItems = [];
