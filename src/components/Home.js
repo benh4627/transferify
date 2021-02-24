@@ -5,7 +5,9 @@ import app from "../base";
 import Menu from "./navbar.js"
 import "./Home.css";
 import StudentDirectoryPage from "./StudentDirectory.js"
-//import ClassCardGroup from "./classcard.js"
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ClassCardGroup from './classcard.js';
 
 const Home = () => {
   return (
@@ -13,7 +15,8 @@ const Home = () => {
       <h1>Home</h1>
       <Menu />
         <div>
-          <Route exact path="/studentdirectory" component={StudentDirectoryPage} />
+          <Route path="/studentdirectory" component={StudentDirectoryPage} />
+          <Route path="/classplanner" component={ClassCardGroup} />
         </div>
       <button onClick={() => app.auth().signOut()}>Sign out</button>
     </Router>

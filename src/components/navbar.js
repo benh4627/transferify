@@ -63,7 +63,11 @@ class Menu extends Component {
                             
                             <li>Your Profile</li>
                             
-                            <li>Class Planner</li>
+                            <li>
+                              <Link to="/classplanner">
+                                Class Planner
+                              </Link>
+                           </li>
                         </ul>
                     </div>
                 ) }

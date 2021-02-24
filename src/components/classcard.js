@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 //import * as data from './CourseInformation.json';
+import { withRouter } from "react-router";
+
 import "./classcard.css";
 
 const data = require('./CourseInformation.json');
@@ -90,7 +92,7 @@ function ClassCardGroup(props) {
 
 
 
-export default ClassCardGroup;
+export default withRouter(ClassCardGroup);
 
 {/*
     const renderCard = (card, index) => {
@@ -109,13 +111,9 @@ export default ClassCardGroup;
             </Card>
         );
     };
-
-
     return(
-
             <div className = "grid">
                 {props.listItems.map(renderCard)}
             </div>
-
     );
     */}
