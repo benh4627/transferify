@@ -6,30 +6,29 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-//import * as data from './CourseInformation.json';
 import { withRouter } from "react-router";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./classcard.css";
 
 const data = require('./CourseInformation.json');
 
 class ClassData {
-     constructor(className, classType, classDescription, prereqs, units) {
+     constructor(className, classType, classDescription, prereqs, units, difficulty) {
          this.className = className;
          this.classType = classType;
          this.classDescription = classDescription;
          this.prereqs = prereqs;
          this.units = units;
+         this.difficulty = difficulty;
      }
  };
 const classList = [];
 
 for (var i = 0; i < data.length; i++) {
     let currData = data[i];
-    let newClass = new ClassData(currData.ClassName, currData.ClassType, currData.ClassDescription, currData.prereqs, currData.Units);
+    let newClass = new ClassData(currData.ClassName, currData.ClassType, currData.ClassDescription, currData.prereqs, currData.Units, currData.Difficulty);
     classList.push(newClass);
 }
-console.log(classList[0]);
 
 function PrereqList(props) {
     var listItems = [];
@@ -51,6 +50,22 @@ function PrereqList(props) {
     );
 }
 
+
+const DifficultyBar = (props) => {
+    let percentage = (props.difficulty / 5) * 100;
+    return (
+        <div>
+            <div>
+                <p className = "left"> Easy</p>
+                <p className = "right"> Hard </p>
+            </div>
+            <div className = "progress-bar">
+                <div className = "filler" style={{width: `${percentage}%`}}/>
+            </div>
+        </div>
+    )
+}
+
 function ClassCard(props) {
 
     return(
@@ -62,6 +77,7 @@ function ClassCard(props) {
                     <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
                     <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
                 </div>
+                <DifficultyBar difficulty = {props.ClassData.difficulty}/>
                 <Card.Subtitle>Prerequisites:</Card.Subtitle>
                 <PrereqList prereqs = {props.ClassData.prereqs}/>
                 <Button variant="primary">Add to Planner</Button>
@@ -90,7 +106,7 @@ function ClassCardGroup(props) {
     );
 }
 
-
+//export default ClassCardGroup;
 
 export default withRouter(ClassCardGroup);
 
