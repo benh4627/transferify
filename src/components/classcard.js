@@ -54,8 +54,14 @@ function PrereqList(props) {
 const DifficultyBar = (props) => {
     let percentage = (props.difficulty / 5) * 100;
     return (
-        <div className = "progress-bar">
-            <div className = "filler" style={{width: `${percentage}%`}}/>
+        <div>
+            <div>
+                <p className = "left"> Easy</p>
+                <p className = "right"> Hard </p>
+            </div>
+            <div className = "progress-bar">
+                <div className = "filler" style={{width: `${percentage}%`}}/>
+            </div>
         </div>
     )
 }
@@ -71,10 +77,7 @@ function ClassCard(props) {
                     <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
                     <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
                 </div>
-                <div>
-                    <Card.Subtitle>Difficulty:</Card.Subtitle>
-                    <DifficultyBar difficulty = {props.ClassData.difficulty}/>
-                </div>
+                <DifficultyBar difficulty = {props.ClassData.difficulty}/>
                 <Card.Subtitle>Prerequisites:</Card.Subtitle>
                 <PrereqList prereqs = {props.ClassData.prereqs}/>
                 <Button variant="primary">Add to Planner</Button>
