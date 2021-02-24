@@ -32,11 +32,14 @@ body {
     width: 350px;
     border-radius: 50px;
     border: 1px solid #333;
+    margin-bottom: 1.1rem;
+    margin-top: 1.1rem;
+    background: #FFFFFF;
 }
 
 .filler {
-    background: #1AD598;
+    background: #FFD100;
     height: 100%;
     border-radius: inherit;
-    transition: wixth .2s ease-in;
+    transition: width .2s ease-in;
 }

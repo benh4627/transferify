@@ -50,15 +50,12 @@ function PrereqList(props) {
     );
 }
 
-const Filler = (props) => {
-    return <div className = "filler" style = {{width: '${props.difficulty}'}}> </div>
-}
 
 const DifficultyBar = (props) => {
     let percentage = (props.difficulty / 5) * 100;
     return (
         <div className = "progress-bar">
-            <div className = "filler" style = {{width: '${percentage}'}}> </div>
+            <div className = "filler" style={{width: `${percentage}%`}}/>
         </div>
     )
 }
@@ -75,8 +72,8 @@ function ClassCard(props) {
                     <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
                 </div>
                 <div>
-                    <h3>Difficulty</h3>
-                    <DifficultyBar difficulty = {props.ClassData.Difficulty}/>
+                    <Card.Subtitle>Difficulty:</Card.Subtitle>
+                    <DifficultyBar difficulty = {props.ClassData.difficulty}/>
                 </div>
                 <Card.Subtitle>Prerequisites:</Card.Subtitle>
                 <PrereqList prereqs = {props.ClassData.prereqs}/>
@@ -106,9 +103,9 @@ function ClassCardGroup(props) {
     );
 }
 
+export default ClassCardGroup;
 
-
-export default withRouter(ClassCardGroup);
+//export default withRouter(ClassCardGroup);
 
 {/*
     const renderCard = (card, index) => {
