@@ -1,4 +1,3 @@
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -25,4 +24,35 @@ body {
 
 .box {
   margin: 20px;
+}
+
+.progress-bar {
+    position: relative;
+    height: 20px;
+    width: 350px;
+    border-radius: 50px;
+    border: 1px solid #333;
+    margin-bottom: 50px;
+    background: #FFFFFF;
+}
+
+.filler {
+    background: #FFD100;
+    height: 100%;
+    border-radius: inherit;
+    transition: width .2s ease-in;
+}
+
+.left {
+  float: left;
+  width: 45%;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.right {
+  float: right;
+  width: 45%;
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 2px;
 }

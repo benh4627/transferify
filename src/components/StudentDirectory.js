@@ -1,6 +1,7 @@
 import React from 'react';
 import './StudentDirectory.css';
-import Logo from './Logo.js';
+import { withRouter } from "react-router";
+//import Logo from './Logo.js';
 
 import studentPic from '../images/Paul_Eggert.jpg';
 import { render } from '@testing-library/react';
@@ -69,15 +70,15 @@ function StudentDirectoryPage() {
         <div>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
             <form id='search' class='top'>
-                <Logo />
+                {/*<Logo />*/}
                 <input class='searchBar' type="text" placeholder="Search"></input>
                 <button type="submit" onClick='SearchStudentList'><i class="fa fa-search"></i></button>
             </form>
-            <div id='stduentDirectory' class='studentDirectory'>
+            <div id='studentDirectory' class='studentDirectory'>
                 <StudentDirectory />
             </div>
         </div>
     )
 }
 
-export default StudentDirectoryPage;
+export default withRouter(StudentDirectoryPage);

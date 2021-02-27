@@ -1,43 +1,43 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from "../App";
-import firebase from 'firebase'
-import PropTypes from 'prop-types';
+import React, { useCallback, useContext } from "react";
+import { withRouter, Redirect } from "react-router";
+import app from "../base.js";
+import { AuthContext } from "../Auth.js";
 import './login.css';
 
-require('firebase/auth')
+const Login = ({ history }) => {
+  const handleSubmit = useCallback(
+    async event => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      try {
+        await app
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
+        history.push("/");
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [history]
+  );
 
-const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [error, setErrors] = useState();
-  
-  const Auth = useContext(AuthContext);
-  
-  const handleSubmit = e => {
-    e.preventDefault();
-    firebase
-       .auth()
-       .signInWithEmailAndPassword(email, password)
-       .then(res => {
-          console.log(res)
-          if (res.user) Auth.setLoggedIn(true);
-       })
-       .catch(e => {
-          setErrors(e.message);
-       });
-  };
-  
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }
+
   return(
     <div>
       <h1>Log In</h1>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form onSubmit={handleSubmit}>
         <label>
           <p>Email</p>
-          <input type="email" onChange={e => setEmail(e.target.value)} />
+          <input name="email" type="email" placeholder="Email" />
         </label>
         <label>
           <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
+          <input name="password" type="password" placeholder="Password" />
         </label>
         <div>
           <button type="submit">Log In</button>
@@ -48,6 +48,6 @@ const Login = () => {
       </a>
     </div>
   )
-}
+};
 
-export default Login;
+export default withRouter(Login);
