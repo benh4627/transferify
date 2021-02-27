@@ -29,7 +29,7 @@ const Login = ({ history }) => {
   }
 
   return(
-    <div className="Home">
+    <div className="Home Login">
       
       <Logo />
       <form onSubmit={handleSubmit}>

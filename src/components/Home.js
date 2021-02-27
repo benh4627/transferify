@@ -12,14 +12,14 @@ import ClassCardGroup from './classcard.js';
 import Logo from "./Logo.js";
 
 const Home = () => {
-  return (<div>
+  return (<div className="Home">
     <Router>
-      <h1>Home</h1>
         <div>
+          <Menu />
           <Route path="/studentdirectory" component={StudentDirectoryPage} />
           <Route path="/classplanner" component={ClassCardGroup} />
         </div>
-      <button onClick={() => app.auth().signOut()}>Sign out</button>
+      <button className="button2" onClick={() => app.auth().signOut()}>Sign out</button>
     </Router></div>
   );
 };

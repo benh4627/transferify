@@ -19,7 +19,7 @@ const Signup = ({ history }) => {
   }, [history]);
 
   return (
-    <div className="Home">
+    <div className="Home Signup">
       <Logo />
         <form onSubmit={handleSignUp}>
             <input name="name" type="name" placeholder="Full Name" />
