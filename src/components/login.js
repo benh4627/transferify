@@ -3,7 +3,8 @@ import { withRouter, Redirect } from "react-router";
 import app from "../base.js";
 import { AuthContext } from "../Auth.js";
 import './login.css';
-
+import './Home.css';
+import Logo from './Logo.js';
 const Login = ({ history }) => {
   const handleSubmit = useCallback(
     async event => {
@@ -28,17 +29,13 @@ const Login = ({ history }) => {
   }
 
   return(
-    <div>
-      <h1>Log In</h1>
+    <div className="Home">
+      
+      <Logo />
       <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email</p>
           <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          <p>Password</p>
+        <br/>
           <input name="password" type="password" placeholder="Password" />
-        </label>
         <div>
           <button type="submit">Log In</button>
         </div>

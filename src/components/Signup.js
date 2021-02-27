@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import app from "../base";
 import './Signup.css';
+import Logo from './Logo.js';
 
 const Signup = ({ history }) => {
   const handleSignUp = useCallback(async event => {
@@ -18,19 +19,12 @@ const Signup = ({ history }) => {
   }, [history]);
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className="Home">
+      <Logo />
         <form onSubmit={handleSignUp}>
-          <label>
-            <p>Email</p>
+            <input name="name" type="name" placeholder="Full Name" />
             <input name="email" type="email" placeholder="Email" />
-          </label>
-                  
-          <label>
-            <p>Password</p>
             <input name="password" type="password" placeholder="Password" />
-          </label>
-                  
          <div>
             <button type="submit">Sign Up</button>
          </div>

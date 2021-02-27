@@ -13,8 +13,7 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <Logo />
-        <div>
+        <div className="App">
           <PrivateRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />

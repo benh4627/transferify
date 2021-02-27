@@ -36,7 +36,7 @@ button {
 }
 
 /* Input fields */
-input[type=email], input[type=password] {
+input[type=email], input[type=password], [type=name] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -46,7 +46,7 @@ input[type=email], input[type=password] {
 }
 
 /* Darken the color when an input box get focus */
-input[type=first_name]:focus, input[type=last_name]:focus, input[type=email]:focus, input[type=password]:focus {
+input[type=name]:focus, input[type=email]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
