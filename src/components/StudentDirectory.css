@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(39,116,174);
     align-items: center;
 }
 
@@ -7,26 +7,29 @@ body {
     width: 300px;
     height: auto;
     background-color: rgb(240, 239, 239);
-    margin: 10px;
+    margin: 8px;
+    opacity: 0.9;
+    border-radius: 3px;
+    border: 1px solid rgb(180, 180, 180);
 }
 
 .studentCard:hover {
-    background-color: rgb(226, 226, 226);
+    opacity: 1;
+    background-color: rgb(255, 251, 197);
 }
 
 .studentName {
-    border-radius: 25px;
+    border-radius: 3px;
     font-size:30px;
-    background-color: rgba(255, 208, 0, 0.863);
+    background-color: rgb(270, 270, 270);
     color: rgb(39,116,174);
 }
 
 .studentInfo {
-    border-radius: 25px;
+    border-radius: 5px;
     font-size: 16px;
     text-align: left;
-    background-color: rgba(255, 208, 0, 0.863);
-    margin: auto;
+    background-color: rgb(270, 270, 270);
     padding: 10px 10px 10px 10px;
     color: black;
     line-height: 1;
@@ -38,10 +41,13 @@ body {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+    padding: 2px;
+    border: 1px solid rgb(197, 197, 197);
+    margin: 10px;
 }
 
 .studentDirectory {
-    margin: 10px 10px 10px 10px;
+    margin: 10px;
     text-align: center;
 }
 
@@ -51,33 +57,29 @@ body {
 
 .top input {
     width: 45%;
-    border: 5px solid rgba(255, 208, 0, 0.863);
+    border: 1px solid rgb(197, 197, 197);
     padding: 20px;
-    height: 50px;
-    border-radius: 25px;
+    height: 30px;
+    border-radius: 5px;
     outline: none;
     margin: 30px 10px 10px;
     font-size: 17px;
 }
 
 .top button {
-    width: 10%;
-    height: 50px;
-    padding: 15px;
+    width: 5%;
+    height: 42px;
+    padding: 0px;
     background: rgb(39,116,174);
     color: white;
     font-size: 17px;
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
-    margin: 30px 10px 10px;
+    margin: 30px 5px 5px;
 }
 
 form {
     text-align: center;
     justify-content: center;
-}
-
-.logoGeneral {
-    width: 200px;
 }
