@@ -17,19 +17,28 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  margin: 10px;
+  text-align: center;
 };
 .grid > div {
   flex-basis: calc(50% - 40px);
 }
 
 .box {
-  margin: 20px;
+    width: 300px;
+    height: auto;
+    background-color: rgb(240, 239, 239);
+    margin: 8px;
+    opacity: 0.9;
+    border-radius: 10px;
+    border: 1px solid rgb(180, 180, 180);
+    padding: 1.5rem;
 }
 
 .progress-bar {
     position: relative;
     height: 20px;
-    width: 350px;
+    width: 35rem;
     border-radius: 50px;
     border: 1px solid #333;
     margin-bottom: 50px;
@@ -44,10 +53,13 @@ body {
 }
 
 .left {
+  text-align: left;
   float: left;
   width: 45%;
   font-weight: bold;
   margin-bottom: 2px;
+  margin-left: 1.1rem;
+  padding-left: 1.5rem;
 }
 .right {
   float: right;
@@ -55,4 +67,6 @@ body {
   text-align: right;
   font-weight: bold;
   margin-bottom: 2px;
+  margin-right: 1.1rem;
+  padding-right: 1.5rem;
 }

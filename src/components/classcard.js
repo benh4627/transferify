@@ -55,7 +55,7 @@ const DifficultyBar = (props) => {
     let percentage = (props.difficulty / 5) * 100;
     return (
         <div>
-            <div>
+            <div className = "float-center">
                 <p className = "left"> Easy</p>
                 <p className = "right"> Hard </p>
             </div>
@@ -69,8 +69,8 @@ const DifficultyBar = (props) => {
 function ClassCard(props) {
 
     return(
-        <Card style={{ width: '25rem', margin: '1.1rem'}} className="box">
-            <Card.Header>{props.ClassData.className}</Card.Header>
+        <div style={{ width: '40rem', margin: '1.1rem'}} className="box">
+            <b>{props.ClassData.className}</b>
             <Card.Body>
                 <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.units} Units</Card.Subtitle>
                 <div className="description">
@@ -82,7 +82,7 @@ function ClassCard(props) {
                 <PrereqList prereqs = {props.ClassData.prereqs}/>
                 <Button variant="primary">Add to Planner</Button>
             </Card.Body>
-        </Card>
+        </div>
     );
 }
 
@@ -109,27 +109,3 @@ function ClassCardGroup(props) {
 //export default ClassCardGroup;
 
 export default withRouter(ClassCardGroup);
-
-{/*
-    const renderCard = (card, index) => {
-        return (
-            <Card style={{ width: '18rem'}} key={index} className="box">
-                <Card.Header>{card.className}</Card.Header>
-                <Card.Body>
-                    <div className="description">
-                        <Card.Subtitle style={{marginBottom: '1.1rem'}}>{card.classType}</Card.Subtitle>
-                        <Card.Text style={{ fontSize: '1.1rem'}}>{card.classDescription}</Card.Text>
-                    </div>
-                    <Card.Subtitle>Prerequisites:</Card.Subtitle>
-                    <PrereqList prereqs = {card.prereqs}/>
-                    <Button variant="primary">Add to Planner</Button>
-                </Card.Body>
-            </Card>
-        );
-    };
-    return(
-            <div className = "grid">
-                {props.listItems.map(renderCard)}
-            </div>
-    );
-    */}
