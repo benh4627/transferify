@@ -11,7 +11,7 @@ body {
 
 .description {
     margin-bottom: 1.5rem;
-};
+}
 .grid {
   min-height: 100%;
   display: flex;
@@ -19,13 +19,15 @@ body {
   flex-direction: row;
   margin: 10px;
   text-align: center;
-};
+}
+
 .grid > div {
   flex-basis: calc(50% - 40px);
 }
 
 .box {
-    width: 300px;
+    margin: '1.1rem';
+    width: 40rem;
     height: auto;
     background-color: rgb(240, 239, 239);
     margin: 8px;
@@ -35,13 +37,36 @@ body {
     padding: 1.5rem;
 }
 
+.prereqs {
+    display: block;
+    border: 1px solid rgb(180, 180, 180);
+    text-align: center;
+
+}
+
+.bar {
+    border: 1px solid rgb(180, 180, 180);
+    position: block;
+    height: 60px;
+}
+
+{/*.pb-comp {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70rem;
+    display: block;
+    padding-left: 5rem;
+
+}*/}
+
 .progress-bar {
     position: relative;
     height: 20px;
-    width: 35rem;
+    width: 90%;
     border-radius: 50px;
     border: 1px solid #333;
     margin-bottom: 50px;
+    margin-left: 3.5rem;
     background: #FFFFFF;
 }
 
@@ -58,8 +83,8 @@ body {
   width: 45%;
   font-weight: bold;
   margin-bottom: 2px;
-  margin-left: 1.1rem;
-  padding-left: 1.5rem;
+  margin-left: 4rem;
+  padding-left: 8rem;
 }
 .right {
   float: right;
@@ -67,6 +92,6 @@ body {
   text-align: right;
   font-weight: bold;
   margin-bottom: 2px;
-  margin-right: 1.1rem;
-  padding-right: 1.5rem;
+  margin-right: 4rem;
+  padding-right: 8rem;
 }

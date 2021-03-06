@@ -6,6 +6,7 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Logo from './Logo.js';
 import { withRouter } from "react-router";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./classcard.css";
@@ -54,13 +55,15 @@ function PrereqList(props) {
 const DifficultyBar = (props) => {
     let percentage = (props.difficulty / 5) * 100;
     return (
-        <div>
-            <div className = "float-center">
+        <div className = "bar">
+            <div style={{display: 'block'}}>
                 <p className = "left"> Easy</p>
                 <p className = "right"> Hard </p>
             </div>
-            <div className = "progress-bar">
-                <div className = "filler" style={{width: `${percentage}%`}}/>
+            <div className = "pb-comp">
+                <div className = "progress-bar">
+                    <div className = "filler" style={{width: `${percentage}%`}}/>
+                </div>
             </div>
         </div>
     )
@@ -69,7 +72,7 @@ const DifficultyBar = (props) => {
 function ClassCard(props) {
 
     return(
-        <div style={{ width: '40rem', margin: '1.1rem'}} className="box">
+        <div className="box">
             <b>{props.ClassData.className}</b>
             <Card.Body>
                 <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.units} Units</Card.Subtitle>
@@ -77,9 +80,13 @@ function ClassCard(props) {
                     <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
                     <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
                 </div>
-                <DifficultyBar difficulty = {props.ClassData.difficulty}/>
-                <Card.Subtitle>Prerequisites:</Card.Subtitle>
-                <PrereqList prereqs = {props.ClassData.prereqs}/>
+                <div>
+                    <DifficultyBar difficulty = {props.ClassData.difficulty}/>
+                    <div className = "prereqs">
+                        <Card.Subtitle>Prerequisites:</Card.Subtitle>
+                        <PrereqList prereqs = {props.ClassData.prereqs}/>
+                    </div>
+                </div>
                 <Button variant="primary">Add to Planner</Button>
             </Card.Body>
         </div>
@@ -99,8 +106,11 @@ function CardGroup(props) {
 function ClassCardGroup(props) {
 
     return(
-        <div className = "grid">
-            <CardGroup />
+        <div>
+            <Logo />
+            <div className = "grid">
+                <CardGroup />
+            </div>
         </div>
 
     );
