@@ -1,7 +1,7 @@
 .profileInfoCard{
     width: auto;
     height: 800px;
-    background-color: rgb(240, 239, 239);
+    background-color: rgb(139, 184, 232);
     margin: 10px;
     border-radius: 25px;
     padding: 20px;
@@ -25,7 +25,7 @@
     margin: 10px;
     padding: 20px;
     font-size: 50px;
-    background-color: rgba(255, 208, 0, 0.863);
+    background-color: rgb(180, 180, 180);
     font-weight: bold;
     font-size: 30px;
 }
@@ -36,18 +36,19 @@
     padding: 20px;
     font-size: 25px;
     white-space: pre;
-    background-color: rgba(255, 208, 0, 0.863);
+    background-color: rgb(180, 180, 180);
     height: auto;
 }
 
 ::placeholder { 
     color: black;
+    background-color: rgb(238, 235, 235);
 }
 
 .profilePlan {
     width: auto;
     height: auto;
-    background-color: rgb(240, 239, 239);
+    background-color: rgb(139, 184, 232);
     margin: 10px;
     border-radius: 25px;
     padding: 20px;
@@ -58,7 +59,7 @@
     margin: 10px;
     padding: 20px;
     font-size: 50px;
-    background-color: rgba(0, 110, 255, 0.753);
+    background-color: rgb(180, 180, 180);
     font-weight: bold;
     font-size: 30px;
     color: white;
@@ -67,7 +68,8 @@
 .planner {
     border-radius: 25px;
     border-style: solid;
-    border-color: rgba(0, 110, 255, 0.753);
+    border-color: rgb(180, 180, 180);
+    background-color: rgb(238, 235, 235);
     width: auto;
     height: 1000px;
 }

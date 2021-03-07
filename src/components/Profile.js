@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Profile.css';
 import { withRouter } from "react-router";
+import Logo from './Logo.js';
 //const db = firebase.firestore();
 
 import studentPic from '../images/Paul_Eggert.jpg';
@@ -36,10 +37,11 @@ function dragDrop(ev) {
     return false;
 }
 
-class Profile extends React.Component {
+class ProfilePage extends React.Component {
     render() {
         return (
             <div>
+                <Logo />
                 <div class='profileInfoCard'>
                     <h1 class='profileTitle'>Student Information</h1>
                     <img class='studentPic' src={person.image} />
@@ -76,4 +78,4 @@ class Profile extends React.Component {
     }
 }
 
-export default withRouter(Profile);
+export default withRouter(ProfilePage);

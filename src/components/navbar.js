@@ -51,7 +51,7 @@ class Menu extends Component {
                         <ul>
                             <li><Link to="/"> Home </Link></li>
                             <li><Link to="/studentdirectory">   Student Directory</Link> </li>
-                            <li><Link to="/profile">Your Profile</Link></li>
+                            <li><Link to="/Profile">Your Profile</Link></li>
                             <li> <Link to="/classplanner"> Class Planner</Link></li>
                         </ul>
                     </div>
