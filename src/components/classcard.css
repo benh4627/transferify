@@ -25,6 +25,14 @@ body {
   flex-basis: calc(50% - 500px);
 }
 
+.bkgd_div {
+    background-color: rgb(139, 184, 232);
+    margin-top: 2px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
 .box {
     margin: 1.1rem;
     width: 500px;
