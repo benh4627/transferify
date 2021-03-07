@@ -74,7 +74,7 @@ function ClassCard(props) {
     return(
         <div className="box">
             <b>{props.ClassData.className}</b>
-            <Card.Body>
+            <div>
                 <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.units} Units</Card.Subtitle>
                 <div className="description">
                     <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
@@ -88,7 +88,7 @@ function ClassCard(props) {
                     </div>
                 </div>
                 <Button variant="primary">Add to Planner</Button>
-            </Card.Body>
+            </div>
         </div>
     );
 }
