@@ -6,11 +6,14 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Logo from './Logo.js';
 import { withRouter } from "react-router";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./classcard.css";
 
 const data = require('./CourseInformation.json');
+
+const testCurrClassNameList = "CS 1,CS M152A";
 
 class ClassData {
      constructor(className, classType, classDescription, prereqs, units, difficulty) {
@@ -54,13 +57,15 @@ function PrereqList(props) {
 const DifficultyBar = (props) => {
     let percentage = (props.difficulty / 5) * 100;
     return (
-        <div>
-            <div>
+        <div className = "bar">
+            <div style={{display: 'block'}}>
                 <p className = "left"> Easy</p>
                 <p className = "right"> Hard </p>
             </div>
-            <div className = "progress-bar">
-                <div className = "filler" style={{width: `${percentage}%`}}/>
+            <div className = "pb-comp">
+                <div className = "progress-bar">
+                    <div className = "filler" style={{width: `${percentage}%`}}/>
+                </div>
             </div>
         </div>
     )
@@ -69,21 +74,49 @@ const DifficultyBar = (props) => {
 function ClassCard(props) {
 
     return(
-        <Card style={{ width: '25rem', margin: '1.1rem'}} className="box">
-            <Card.Header>{props.ClassData.className}</Card.Header>
-            <Card.Body>
+        <div className="box">
+            <b>{props.ClassData.className}</b>
+            <div>
                 <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.units} Units</Card.Subtitle>
                 <div className="description">
                     <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
                     <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
                 </div>
-                <DifficultyBar difficulty = {props.ClassData.difficulty}/>
-                <Card.Subtitle>Prerequisites:</Card.Subtitle>
-                <PrereqList prereqs = {props.ClassData.prereqs}/>
+                <div>
+                    <DifficultyBar difficulty = {props.ClassData.difficulty}/>
+                    <div className = "prereqs">
+                        <Card.Subtitle>Prerequisites:</Card.Subtitle>
+                        <PrereqList prereqs = {props.ClassData.prereqs}/>
+                    </div>
+                </div>
                 <Button variant="primary">Add to Planner</Button>
-            </Card.Body>
-        </Card>
+                <Button variant="primary">Add to Completed Prereqs</Button>
+            </div>
+        </div>
     );
+}
+
+function CurrClasses(props) {
+    var listItems = [];
+    var classNames = testCurrClassNameList.split(',');
+    var currClassList = [];
+    console.log(classNames);
+
+    for (var i = 0; i < classNames.length; i++) {
+        for (var j = 0; j < classList.length; j++) {
+            if (classNames[i] == classList[j].className) {
+                let newClass = new ClassData(classList[j].className, classList[j].classType, classList[j].classDescription, classList[j].prereqs, classList[j].units, classList[j].difficulty);
+                currClassList.push(newClass);
+                j = classList.length;
+            }
+        }
+    }
+
+    for (var i = 0; i < currClassList.length; i++) {
+        listItems.push(<ClassCard ClassData = {currClassList[i]}/>);
+
+    }
+    return listItems;
 }
 
 function CardGroup(props) {
@@ -99,37 +132,23 @@ function CardGroup(props) {
 function ClassCardGroup(props) {
 
     return(
-        <div className = "grid">
-            <CardGroup />
+        <div className="center">
+            <Logo />
+            <div className="bkgd_div">
+                <h1>Classes in Your Planner</h1>
+                <div className = "grid">
+                    <CurrClasses />
+                </div>
+            </div>
+            <div className="bkgd_div">
+                <h1>All Required CS Courses</h1>
+                <div className = "grid">
+                    <CardGroup />
+                </div>
+            </div>
         </div>
 
     );
 }
 
-//export default ClassCardGroup;
-
 export default withRouter(ClassCardGroup);
-
-{/*
-    const renderCard = (card, index) => {
-        return (
-            <Card style={{ width: '18rem'}} key={index} className="box">
-                <Card.Header>{card.className}</Card.Header>
-                <Card.Body>
-                    <div className="description">
-                        <Card.Subtitle style={{marginBottom: '1.1rem'}}>{card.classType}</Card.Subtitle>
-                        <Card.Text style={{ fontSize: '1.1rem'}}>{card.classDescription}</Card.Text>
-                    </div>
-                    <Card.Subtitle>Prerequisites:</Card.Subtitle>
-                    <PrereqList prereqs = {card.prereqs}/>
-                    <Button variant="primary">Add to Planner</Button>
-                </Card.Body>
-            </Card>
-        );
-    };
-    return(
-            <div className = "grid">
-                {props.listItems.map(renderCard)}
-            </div>
-    );
-    */}
