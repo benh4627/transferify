@@ -21,8 +21,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        currentUser
-      }}
+        currentUser}}  
     >
       {children}
     </AuthContext.Provider>

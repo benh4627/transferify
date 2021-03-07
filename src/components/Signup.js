@@ -7,11 +7,14 @@ import Logo from './Logo.js';
 const Signup = ({ history }) => {
   const handleSignUp = useCallback(async event => {
     event.preventDefault();
-    const { email, password } = event.target.elements;
+    const { email, password, name } = event.target.elements;
     try {
       await app
         .auth()
-        .createUserWithEmailAndPassword(email.value, password.value);
+        .createUserWithEmailAndPassword(email.value, password.value)
+        .then((res) => {
+          res.user.updateProfile({ displayName: name.value })
+        })
       history.push("/");
     } catch (error) {
       alert(error);
@@ -28,7 +31,6 @@ const Signup = ({ history }) => {
          <div>
             <button type="submit">Sign Up</button>
          </div>
-
         </form>
       </div>      
     );
