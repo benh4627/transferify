@@ -13,6 +13,8 @@ import "./classcard.css";
 
 const data = require('./CourseInformation.json');
 
+const testCurrClassNameList = "CS 1,CS M152A";
+
 class ClassData {
      constructor(className, classType, classDescription, prereqs, units, difficulty) {
          this.className = className;
@@ -93,6 +95,29 @@ function ClassCard(props) {
     );
 }
 
+function CurrClasses(props) {
+    var listItems = [];
+    var classNames = testCurrClassNameList.split(',');
+    var currClassList = [];
+    console.log(classNames);
+
+    for (var i = 0; i < classNames.length; i++) {
+        for (var j = 0; j < classList.length; j++) {
+            if (classNames[i] == classList[j].className) {
+                let newClass = new ClassData(classList[j].className, classList[j].classType, classList[j].classDescription, classList[j].prereqs, classList[j].units, classList[j].difficulty);
+                currClassList.push(newClass);
+                j = classList.length;
+            }
+        }
+    }
+
+    for (var i = 0; i < currClassList.length; i++) {
+        listItems.push(<ClassCard ClassData = {currClassList[i]}/>);
+
+    }
+    return listItems;
+}
+
 function CardGroup(props) {
     var listItems = [];
 
@@ -108,6 +133,12 @@ function ClassCardGroup(props) {
     return(
         <div>
             <Logo />
+            <div className="curr_classes">
+                <h1>Classes in Your Planner</h1>
+                <div className = "grid">
+                    <CurrClasses />
+                </div>
+            </div>
             <div className = "grid">
                 <CardGroup />
             </div>
