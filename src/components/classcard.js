@@ -90,6 +90,7 @@ function ClassCard(props) {
                     </div>
                 </div>
                 <Button variant="primary">Add to Planner</Button>
+                <Button variant="primary">Add to Completed Prereqs</Button>
             </div>
         </div>
     );
@@ -131,7 +132,7 @@ function CardGroup(props) {
 function ClassCardGroup(props) {
 
     return(
-        <div>
+        <div className="center">
             <Logo />
             <div className="bkgd_div">
                 <h1>Classes in Your Planner</h1>
@@ -140,6 +141,7 @@ function ClassCardGroup(props) {
                 </div>
             </div>
             <div className="bkgd_div">
+                <h1>All Required CS Courses</h1>
                 <div className = "grid">
                     <CardGroup />
                 </div>
@@ -148,7 +150,5 @@ function ClassCardGroup(props) {
 
     );
 }
-
-//export default ClassCardGroup;
 
 export default withRouter(ClassCardGroup);
