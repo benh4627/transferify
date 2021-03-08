@@ -36,7 +36,7 @@ button {
 }
 
 /* Input fields */
-input[type=email], input[type=password], [type=name] {
+input[type=email], input[type=password], [type=name], [type=major], [type=year] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
