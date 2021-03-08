@@ -9,8 +9,9 @@ import Menu from "./navbar.js"
 import StudentDirectoryPage from "./StudentDirectory.js"
 import ClassCardGroup from './classcard.js';
 import ProfilePage from "./ProfilePage.js";
+//import Logo from "./Logo.js";
 
-import Logo from "./Logo.js";
+//import ProfilePage from './Profile.js'
 
 const Home = () => {
   return (<div className="Home">
@@ -20,7 +21,6 @@ const Home = () => {
           <Route path="/studentdirectory" component={StudentDirectoryPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/classplanner" component={ClassCardGroup} />
-          <Route path="/profile" component={ProfilePage} />
         </div>
       <button className="button2" onClick={() => app.auth().signOut()}>Sign out</button>
     </Router></div>

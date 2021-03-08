@@ -5,6 +5,7 @@ import Logo from './Logo.js';
 //const db = firebase.firestore();
 
 import studentPic from '../images/Paul_Eggert.jpg';
+
 class student {
     constructor(firstName, lastName, major, year, email) {
         this.image = studentPic;
