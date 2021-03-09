@@ -35,21 +35,6 @@ body {
     height: auto;
 }
 
-/*
-button {
-  background-color: rgb(39,116,174);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 40%;
-  opacity: 0.9;
-  border-radius: 25px;
-  justify-items: center;
-  text-align: center;
-}
-*/
 .uploadPhoto {
   text-align: center;
   display: block;
@@ -87,18 +72,44 @@ div.uploadPhoto>label {
   margin-top: 1rem;
 }
 
-
-/*
-div.studentPic>img {
-    width: 250px;
-    height: 250px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    text-align: justify;
-    color: black;
+.profilePlan {
+    width: auto;
+    height: auto;
+    background-color: rgb(139, 184, 232);
+    margin: 10px;
+    border-radius: 25px;
+    padding: 20px;
 }
-*/
+
+.planTitle {
+    border-radius: 25px;
+    margin: 10px;
+    padding: 20px;
+    font-size: 50px;
+    background-color: rgb(180, 180, 180);
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+}
+
+.planner {
+    border-radius: 25px;
+    border-style: solid;
+    border-color: rgb(180, 180, 180);
+    background-color: rgb(238, 235, 235);
+    width: auto;
+    height: 1000px;
+}
+
+#source {
+    color: blue;
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+}
+
+#target {
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+}
