@@ -5,7 +5,6 @@ import firebase from 'firebase';
 import './Signup.css';
 import Logo from './Logo.js';
 
-var count;
 var countRef;
 
 const Signup = ({ history }) => {
@@ -20,6 +19,7 @@ const Signup = ({ history }) => {
         .createUserWithEmailAndPassword(email.value, password.value)
         .then((res) => { 
           res.user.updateProfile({ displayName: name.value })
+          database.ref("names/" + res.user.uid).set({ name: name.value })
           database.ref("years/" + res.user.uid).set({ gradYear: year.value })
           database.ref("majors/" + res.user.uid).set({ major: major.value })
           countRef = database.ref("userCount/")

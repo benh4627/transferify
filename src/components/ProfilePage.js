@@ -74,6 +74,8 @@ const ProfilePage = () => {
   function getCount(snap) {
     count = snap.val();
   }
+  
+  console.log(count);
 
   return ( 
     <div className = "profileInfoCard">
@@ -82,7 +84,6 @@ const ProfilePage = () => {
       <div class = "Pic">
          <img src={url} alt="studentPic" />
       </div>
-      
       <form class = "profileLabels">
         <label>Name: {currentUser.displayName}</label>
         <br></br>
@@ -91,8 +92,6 @@ const ProfilePage = () => {
         <label>Graduation Year: {year}</label>
         <br></br>
         <label>Major: {major}</label>
-        <br></br>
-        <label>Count: {count}</label>
       </form>
 
       
