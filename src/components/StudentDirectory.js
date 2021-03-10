@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import './StudentDirectory.css';
 import { withRouter } from "react-router";
 import Logo from './Logo.js';
@@ -7,37 +7,49 @@ import studentPic from '../images/Paul_Eggert.jpg';
 import { render } from '@testing-library/react';
 import Menu from './navbar.js';
 
+import firebase from 'firebase';
+var database = firebase.database();
+
 const studentList = [];
+const yearList = [];
+const nameList = [];
+const majorList = [];
+
+var count;
+var nameVals = {};
+var yearVals = {}; 
+var majorVals = {};
+
 class student {
-    constructor(firstName, lastName, major, year, email) {
-        this.image = studentPic;
-        this.firstName = firstName;
-        this.lastName = lastName
+    constructor(name, email, major, year, image) {
+        this.name = name;
+        this.email = email;
         this.major = major;
         this.year = year;
-        this.email = email;
+        this.image = image;
     }
 };
 
-for (let i = 0 ; i < 40 ; i++) {
-    let person = new student('First', 'Last', 'Computer Science', 2020+i, 'emailaddress@gmail.com');
-    studentList.push(person);
-}
-console.log(studentList);
-
-//---------------------------------------
-
 function StudentCard(props) {
+    function getMajor() {
+        var studentMajor = Object.keys(props.student.major).map((key) => props.student.major[key]);
+        return studentMajor;
+    }
+    
+    function getYear() {
+        var studentYear = Object.keys(props.student.year).map((key) => props.student.year[key]);
+        return studentYear;
+    }
     return (
         <button type='button' class='studentCard'>
             <div class='studentName'>
-                <b>{props.student.firstName} {props.student.lastName}</b>
+                <b>{props.student.name}</b>
             </div> <br/>
             <img class='studentPicture' src={props.student.image} />
             <div class='studentInfo'>
-                <p>Major: {props.student.major}</p>
-                <p>Year: {props.student.year}</p> 
-                <p>Email: <a href="">{props.student.email}</a></p>
+                <p>Major: {getMajor()}</p>
+                <p>Year: {getYear()}</p> 
+                <p>Email: <a href="">{student.email}</a></p>
             </div>
         </button>
     );
@@ -45,7 +57,7 @@ function StudentCard(props) {
 
 function StudentDirectory(props) {
     let ret = [];
-    for (let i = 0 ; i < studentList.length ; i++) {
+    for (let i = 0; i < count; i++) {
         ret.push(
             <StudentCard student={studentList[i]}/>
         );
@@ -67,6 +79,64 @@ function SearchStudentList() {
 }
 
 function StudentDirectoryPage() {
+    const [nameKeys, setNameKeys] = useState([]);
+    const [yearKeys, setYearKeys] = useState([]);
+    const [majorKeys, setMajorKeys] = useState([]);
+    
+    useEffect(() => { 
+        const countRef = database.ref("userCount/");
+        countRef.on("value", (snapshot) => {
+            count = snapshot.val();
+        });
+        
+        const namesRef = database.ref("names/");
+        namesRef.on("value", (data) => {
+            nameVals = data.val();
+            setNameKeys(Object.keys(nameVals));
+        });
+        
+        const yearsRef = database.ref("years/");
+        yearsRef.on("value", (data) => {
+            yearVals = data.val();
+            setYearKeys(Object.keys(yearVals));
+        });
+        
+        const majorsRef = database.ref("majors/");
+        majorsRef.on("value", (data) => {
+            majorVals = data.val();
+            setMajorKeys(Object.keys(majorVals));  
+        });
+        
+    }, []);
+    
+    
+    useEffect(() => { 
+        for(var i = 0; i < nameKeys.length; i++) {
+            nameList.push(nameVals[nameKeys[i]]);
+        }
+    }, [nameKeys]);
+
+    useEffect(() => { 
+        for(var i = 0; i < count; i++) {
+            yearList.push(yearVals[yearKeys[i]]);
+        }
+    }, [yearKeys]);
+    
+    useEffect(() => { 
+        for(var i = 0; i < majorKeys.length; i++) {
+            majorList.push(majorVals[majorKeys[i]]);
+        }
+    }, [majorKeys]);
+    
+    useEffect(() => {
+        for (let i = 0; i < count; i++) {
+            let person = new student('First Last', 'emailaddress@gmail.com', majorList[i], yearList[i], studentPic);
+            studentList.push(person);
+        }
+    }, [nameList, yearList, majorList]);
+
+
+    console.log("StudentDirectoryPage");
     return (
         <div>
             <Logo />
@@ -76,10 +146,9 @@ function StudentDirectoryPage() {
                 <button type="submit" onClick='SearchStudentList'><i class="fa fa-search"></i></button>
             </form>
             <div id='studentDirectory' class='studentDirectory'>
-                <StudentDirectory />
+                {studentList && <StudentDirectory />}
             </div>
         </div>
-    )
+    );
 }
-
 export default withRouter(StudentDirectoryPage);

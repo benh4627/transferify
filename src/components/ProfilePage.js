@@ -8,7 +8,32 @@ import "./ProfilePage.css"
 var year;
 var major;
 var count;
-  
+
+function dragstart_handler(ev) {
+    console.log("dragStart");
+    // Change the source element's background color to signify drag has started
+    ev.currentTarget.style.border = "dashed";
+    // Set the drag's format and data. Use the event target's id for the data
+    ev.dataTransfer.setData("text/plain", ev.target.id);
+}
+   
+function dragover_handler(ev) {
+    console.log("dragOver");
+    ev.preventDefault();
+}
+   
+function drop_handler(ev) {
+    console.log("Drop");
+    ev.preventDefault();
+    // Get the data, which is the id of the drop target
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    // Clear the drag data cache (for all formats/types)
+    ev.dataTransfer.clearData();
+}
+
+//-----------------------
+
 const ProfilePage = () => {
   const {currentUser} = useContext(AuthContext);
   var database = firebase.database();
@@ -74,35 +99,57 @@ const ProfilePage = () => {
   function getCount(snap) {
     count = snap.val();
   }
+  
+  console.log(count);
 
   return ( 
-    <div className = "profileInfoCard">
-      <h1 class='profileTitle'>Student Information</h1>
+    <div>
+        <div className = "profileInfoCard">
+            <h1 class='profileTitle'>Student Information</h1>
  
-      <div class = "Pic">
-         <img src={url} alt="studentPic" />
-      </div>
-      
-      <form class = "profileLabels">
-        <label>Name: {currentUser.displayName}</label>
-        <br></br>
-        <label>Email: {currentUser.email}</label>
-        <br></br>
-        <label>Graduation Year: {year}</label>
-        <br></br>
-        <label>Major: {major}</label>
-        <br></br>
-        <label>Count: {count}</label>
-      </form>
+            <div class = "Pic">
+                <img src={url} alt="studentPic" />
+            </div>
+            <form class = "profileLabels">
+                <label>Name: {currentUser.displayName}</label>
+                <br></br>
+                <label>Email: {currentUser.email}</label>
+                <br></br>
+                <label>Graduation Year: {year}</label>
+                <br></br>
+                <label>Major: {major}</label>
+             </form>
 
       
-      <div className = "uploadPhoto">
-        <input type="file" onChange={handleChange} />
-        <button onClick={handleUpload}>Upload</button>
-        <progress value={progress} max="100" />
-      </div>
-      
+            <div className = "uploadPhoto">
+                <input type="file" onChange={handleChange} />
+                <button onClick={handleUpload}>Upload</button>
+                <progress value={progress} max="100" />
+            </div>
+        </div>
+        
+        <div class='profilePlan'> 
+            <h1 class='planTitle'>Planning Schedule</h1>
+                <div class='planner'>
+                    Drag and drop stuff...
+                    <div>
+                        <p id="source" draggable="true" ondragstart="dragstart_handler(event);" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
+                            Class 1
+                        </p>
+                        <p id="source" draggable="true" ondragstart="dragstart_handler(event);" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
+                            Class 2
+                        </p>
+                        <p id="source" draggable="true" ondragstart="dragstart_handler(event);" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
+                            Class 3
+                        </p>
+                    </div>
+                    <div id="target" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
+                        Plan
+                    </div>
+                </div>
+            </div>
     </div>
+    
   );
 };
 
