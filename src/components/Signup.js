@@ -10,7 +10,7 @@ var countRef;
 
 const Signup = ({ history }) => {
   var database = firebase.database();
-  
+
   const handleSignUp = useCallback(async event => {
     event.preventDefault();
     const { email, password, name, year, major } = event.target.elements;
@@ -18,17 +18,19 @@ const Signup = ({ history }) => {
       await app
         .auth()
         .createUserWithEmailAndPassword(email.value, password.value)
-        .then((res) => { 
+        .then((res) => {
           res.user.updateProfile({ displayName: name.value })
           database.ref("years/" + res.user.uid).set({ gradYear: year.value })
           database.ref("majors/" + res.user.uid).set({ major: major.value })
+          database.ref("prereqs/" + res.user.uid).set({prereqs: "N/A"})
+          database.ref("classplanner/" + res.user.uid).set({classPlanner: "N/A"})
           countRef = database.ref("userCount/")
           countRef.transaction(function (currUsers) {
             return (currUsers || 0) + 1;
           })
         })
       history.push("/");
-      
+
     } catch (error) {
       alert(error);
     }
@@ -47,7 +49,7 @@ const Signup = ({ history }) => {
             <button type="submit">Sign Up</button>
          </div>
         </form>
-      </div>      
+      </div>
     );
 };
 
