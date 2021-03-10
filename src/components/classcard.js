@@ -36,17 +36,17 @@ for (var i = 0; i < data.length; i++) {
 
 function PrereqList(props) {
     var listItems = [];
-    if (props.prereqs == "N/A") {
+    if (props.prereqs == "N/A" || props.prereqs == undefined) {
         return(
             <Card.Text style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>None!</Card.Text>
         );
     }
-    else {
-        var split_reqs = props.prereqs.split(',')
+    {/*else {
+        var split_reqs = props.prereqs.split(',');
         for (var i = 0; i < split_reqs.length; i++) {
             listItems.push(<ListGroup.Item>{split_reqs[i]}</ListGroup.Item>);
         }
-    }
+    }*/}
     return(
         <ListGroup variant="flush">
             {listItems}
@@ -90,11 +90,21 @@ function ClassCard(props) {
                         <PrereqList prereqs = {props.ClassData.prereqs}/>
                     </div>
                 </div>
-                <Button variant="primary">Add to Planner</Button>
-                <Button variant="primary">Add to Completed Prereqs</Button>
+                <Button className='addPlanner' onClick='addToPlanner()'>Add to Planner</Button>
+                <Button className='addPrereq' onClick='addToPrereqs()'>Add to Completed Prereqs</Button>
+                <div id="addedToPlanner" style="display:none;" >Added to Planner</div>
+                <div id="addedToPrereqs" style="display:none;" >Added to Prereqs</div>
             </div>
         </div>
     );
+}
+
+function addToPlanner() {
+    document.getElementById("addedToPlanner").style.display = "";
+}
+
+function addToPrereqs() {
+    document.getElementById("addedToPrereqs").style.display = "";
 }
 
 var classPlanner;
@@ -115,7 +125,7 @@ function CurrClasses(props) {
     classPlannerRef.on("value", getClassPlanner);
     console.log(classPlanner);
 
-    if (classPlanner != "N/A") {
+    if (classPlanner == "N/A") {
         return(
             <p style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>No Classes in Planner. Add from classes below!</p>
         );

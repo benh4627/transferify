@@ -103,3 +103,9 @@ body {
   margin-right: 1rem;
   padding-right: 1rem;
 }
+.addPlanner {
+    margin: 10px;
+}
+.addPrereq {
+    margin: 10px;
+}
