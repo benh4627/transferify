@@ -50,3 +50,12 @@ input[type=name]:focus, input[type=email]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
+
+.Signup a { 
+  text-decoration: none;
+  font-size: 11px;
+  color: #E5E4E2;
+}
+.Signup a:hover {
+   color: #FFF
+}

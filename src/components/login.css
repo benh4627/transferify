@@ -54,9 +54,9 @@ input[type=email]:focus, input[type=password]:focus {
 .Login a {
   text-decoration: none;
   font-size: 11px;
-  color: rgb(75, 75, 75);
+  color: #E5E4E2
 }
 
 .Login a:hover {
-  color: rgb(150, 150, 150);
+  color: #FFF
 }

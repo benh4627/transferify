@@ -55,7 +55,7 @@ const Signup = ({ history }) => {
   }, [history, image]);
 
   return (
-    <div className="Home Signup">
+    <div className="Signup">
       <Logo />
         <p>Sign up with a profile picture, name, email, graduation year, major, and password</p>
         <input type="file" onChange={handleChange} />
@@ -67,6 +67,9 @@ const Signup = ({ history }) => {
             <input name="password" type="password" placeholder="Password" />
             <button type="submit">Sign Up</button>
         </form>
+        <a href="/login">
+        Already have an account? Log In
+        </a>
       </div>
     );
 };

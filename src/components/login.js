@@ -31,7 +31,7 @@ const Login = ({ history }) => {
   }
 
   return(
-    <div className="Home Login">
+    <div className="Login">
       
       <Logo />
       <form onSubmit={handleSubmit}>
@@ -43,7 +43,11 @@ const Login = ({ history }) => {
         </div>
       </form>
       <a href="/signup">
-        Create an account
+        Don't have an account? Sign Up
+      </a>
+      <br/>
+      <a href="/passwordreset">
+        Forgot your password?
       </a>
     </div>
   )
