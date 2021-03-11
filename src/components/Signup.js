@@ -37,6 +37,7 @@ const Signup = ({ history }) => {
           database.ref("classplanner/" + res.user.uid).set({classPlanner: "N/A"})
           database.ref("emails/" + res.user.uid).set({ email: email.value })
           storage.ref("images/" + res.user.uid).put(img);
+          database.ref("uids/" + res.user.uid).set({ uid: res.user.uid });
           countRef = database.ref("userCount/")
           countRef.transaction(function (currUsers) {
             return (currUsers || 0) + 1;

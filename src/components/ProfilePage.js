@@ -119,7 +119,7 @@ const ProfilePage = () => {
                 <img src={url ? url : blankPic} alt="studentPic" />
             </div>
             <form class = "profileLabels">
-              <label>Name: </label>
+              <label>Name: {currentUser.displayName}</label>
               <br></br>
               <label>Email: {currentUser.email}</label>
               <br></br>

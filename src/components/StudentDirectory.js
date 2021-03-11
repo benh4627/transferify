@@ -11,18 +11,16 @@ import './StudentDirectory.css';
 var database = firebase.database();
 const storageRef = storage.ref();
 
-var studentList = [];
-var yearList = [];
-var nameList = [];
-var majorList = [];
-var emailList = [];
-var imageList = [];
+const studentList = [];
+var uidList = [];
+var urlList = [];
 
 var count;
 var nameVals = {};
 var yearVals = {}; 
 var majorVals = {};
 var emailVals = {};
+var uidVals = {};
 
 class student {
     constructor(name, email, major, year, image) {
@@ -101,13 +99,8 @@ function StudentCard(props) {
 
 function StudentDirectory(props) {
     let ret = [];
-    for (let i = 0; i < count; i++) {  
-        let person = new student(nameList[i], emailList[i], majorList[i], yearList[i], imageList[i]);     
-        console.log("person", person);
-        studentList.push(person);
-        ret.push(
-            <StudentCard student={studentList[i]}/>
-        );
+    for (let i = 0; i < uidList.length; i++) { 
+        ret.push( <StudentCard student={studentList[i]}/> );
     }
     return ret;
 }
@@ -121,43 +114,35 @@ function SearchStudentList() {
             <StudentCard student={studentList[i]}/>
         );
     }
-    console.log(ret);
     return ret;
 }
 
-function StudentDirectoryPage() {
-    const [ready, setReady] = useState(false);
-
+function StudentDirectoryPage() {    
     useEffect(() => { 
         getData();
     }, []);
     
     useEffect(() => { 
-        console.log("nameList", nameList);
-        console.log("yearList", yearList);
-        console.log("majorList", majorList);
-        console.log("emailList", emailList);
-        console.log("imageList", imageList);
-        
-        for(let i = 0; i < count; i++) {
-            if ((nameList[i] == undefined) || (emailList[i] == undefined) || 
-                (majorList[i] == undefined) || (yearList[i] == undefined) ||
-                (imageList[i] == undefined)) {
-                console.log("something is undefined")
-                return;
-            }
-            else {
-                let person = new student(nameList[i], emailList[i], majorList[i], yearList[i], imageList[i]);
-                studentList.push(person);
-            }
-            console.log("done with for loop")
-            setReady(true);
+        uidList = Array.from(new Set(uidList));
+        for (var i = 0; i < uidList.length; i++) {
+            const name = nameVals[uidList[i]];
+            const email = emailVals[uidList[i]];
+            const major = majorVals[uidList[i]];
+            const year = yearVals[uidList[i]];
+            const imgRef = storage.ref("images/" + uidList[i]);
+            const imgUrl = imgRef.getDownloadURL().then(url => studentList.push((new student(name, email, major, year, url))));
         }
-        
-        console.log("studentList", studentList);
-    }, [nameList, yearList, majorList, yearList, emailList, imageList]);
+    }, [uidList, urlList]);
 
     function getData() {
+        const uidsRef = database.ref("uids/");
+        uidsRef.on("value", (data) => {
+            uidVals = data.val();
+            var uids = Object.keys(uidVals);
+            for (var i = 0; i < uids.length; i++)
+                Object.values(uidVals[uids[i]]).map(result => uidList.push(result));
+        });
+        
         const countRef = database.ref("userCount/");
         countRef.on("value", (snapshot) => {
             count = snapshot.val();
@@ -165,45 +150,25 @@ function StudentDirectoryPage() {
         
         const namesRef = database.ref("names/");
         namesRef.on("value", (data) => {
-            nameVals = data.val();
-            var names = Object.keys(nameVals);
-            for (var i = 0; i < names.length; i++)
-                nameList.push(nameVals[names[i]]);  
+            nameVals = data.val(); 
         });
         
         const yearsRef = database.ref("years/");
         yearsRef.on("value", (data) => {
-            yearVals = data.val();
-            var years = Object.keys(yearVals);
-            for (var i = 0; i < years.length; i++)
-                yearList.push(yearVals[years[i]]);    
+            yearVals = data.val();    
         });
         
         const majorsRef = database.ref("majors/");
         majorsRef.on("value", (data) => {
-            majorVals = data.val();
-            var majors = Object.keys(majorVals);
-            for (var i = 0; i < majors.length; i++)
-                majorList.push(majorVals[majors[i]]);    
+            majorVals = data.val();   
         });
         
         const emailsRef = database.ref("emails/");
         emailsRef.on("value", (data) => {
-            emailVals = data.val();
-            var emails = Object.keys(emailVals);
-            for (var i = 0; i < emails.length; i++) 
-                emailList.push(emailVals[emails[i]]);  
-        });
-        
-        const imagesRef = storageRef.child("images/");        
-        imagesRef.listAll().then((res) => {
-            res.items.forEach((itemRef) => {
-                itemRef.getDownloadURL().then(url => imageList.push(url));
-            });   
-        });    
+            emailVals = data.val(); 
+        });  
     }
 
-    console.log("StudentDirectoryPage");
     return (
         <div>
             {/*<Logo />*/}
@@ -213,7 +178,7 @@ function StudentDirectoryPage() {
                 <button type="submit" onClick='SearchStudentList'><i class="fa fa-search"></i></button>
             </form>
             <div id='studentDirectory' class='studentDirectory'>
-                {ready ? <StudentDirectory /> : <p>Gathering data, return later</p>}
+                {(studentList.length > 0) ? <StudentDirectory /> : <p>Gathering data, return later</p>}
             </div>
         </div>
     );
