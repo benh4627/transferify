@@ -9,12 +9,14 @@ import Menu from "./navbar.js"
 import StudentDirectoryPage from "./StudentDirectory.js"
 import ClassCardGroup from './classcard.js';
 import ProfilePage from "./ProfilePage.js";
+import Logo from "./Logo";
 //import Logo from "./Logo.js";
 
 const Home = () => {
   return (<div className="Home">
     <Router>
         <div>
+          <Logo/>
           <Menu />
           <Route path="/studentdirectory" component={StudentDirectoryPage} />
           <Route path="/profile" component={ProfilePage} />

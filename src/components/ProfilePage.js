@@ -9,31 +9,38 @@ import blankPic from '../images/blank_profile.png'
 var year;
 var major;
 var count;
+var myclass;
 
-function dragstart_handler(ev) {
-    console.log("dragStart");
-    // Change the source element's background color to signify drag has started
-    ev.currentTarget.style.border = "dashed";
-    // Set the drag's format and data. Use the event target's id for the data
-    ev.dataTransfer.setData("text/plain", ev.target.id);
-}
-   
-function dragover_handler(ev) {
-    console.log("dragOver");
-    ev.preventDefault();
-}
-   
-function drop_handler(ev) {
-    console.log("Drop");
-    ev.preventDefault();
-    // Get the data, which is the id of the drop target
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-    // Clear the drag data cache (for all formats/types)
-    ev.dataTransfer.clearData();
-}
+function Planner() {
+  var ret = [];
+  var classList = [];
+  if (myclass){
+    console.log(myclass)
+    var classes = myclass;
+    var start = 0;
+    var end = classes.search(",");
+    while (end > 0) {
+      var eachClass = myclass.slice(start, end)
+      classList.push(eachClass);
+      start = end+1;
+      classes = classes.slice(end);
+      var end = classes.search(",");
+    }
+    eachClass = myclass.slice(start);
+    classList.push(eachClass);
+    console.log("class list: ", classList);
 
-//-----------------------
+    for (var i = 0; i < classList.length; i++) {
+      ret.push(
+        <div draggable="true" class="planCard">     
+          {classList[i]}
+        </div>
+      );
+    }
+    return ret;
+  }
+  return ret;
+}
 
 const ProfilePage = () => {
   const {currentUser} = useContext(AuthContext);
@@ -95,6 +102,13 @@ const ProfilePage = () => {
         countRef.on("value", (snap) => {
             count = snap.val();
         });
+
+        const classRef = database.ref("classplanner/" + currentUser.uid);
+        classRef.on("value", (data) => {
+            var classData = data.val();
+            var key = Object.keys(classData);
+            myclass = classData[key];
+        });
     }, []);
 
   return ( 
@@ -106,41 +120,28 @@ const ProfilePage = () => {
                 <img src={url ? url : blankPic} alt="studentPic" />
             </div>
             <form class = "profileLabels">
-                <label>Name: {currentUser.displayName}</label>
-                <br></br>
-                <label>Email: {currentUser.email}</label>
-                <br></br>
-                <label>Graduation Year: {year ? year : "Retrieving data"}</label>
-                <br></br>
-                <label>Major: {major ? major : "Retrieving data"}</label>
+              <label>Name: {currentUser.displayName}</label>
+              <br></br>
+              <label>Email: {currentUser.email}</label>
+              <br></br>
+              <label>Graduation Year: {year ? year : "Retrieving data"}</label>
+              <br></br>
+              <label>Major: {major ? major : "Retrieving data"}</label>
              </form>
 
       
             <div className = "uploadPhoto">
                 <input type="file" onChange={handleChange} />
-                <button onClick={handleUpload}>Upload</button>
                 <progress value={progress} max="100" />
+                <br></br>
+                <button onClick={handleUpload}>Upload</button>
             </div>
         </div>
         
         <div class='profilePlan'> 
             <h1 class='planTitle'>Planning Schedule</h1>
                 <div class='planner'>
-                    Drag and drop stuff...
-                    <div>
-                        <p id="source" draggable="true" ondragstart="dragstart_handler(event);" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
-                            Class 1
-                        </p>
-                        <p id="source" draggable="true" ondragstart="dragstart_handler(event);" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
-                            Class 2
-                        </p>
-                        <p id="source" draggable="true" ondragstart="dragstart_handler(event);" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
-                            Class 3
-                        </p>
-                    </div>
-                    <div id="target" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">
-                        Plan
-                    </div>
+                  <Planner/>
                 </div>
             </div>
     </div>

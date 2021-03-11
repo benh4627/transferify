@@ -268,7 +268,7 @@ function ClassCardGroup(props) {
 
     return(
         <div className="center">
-            <Logo />
+            {/*<Logo />*/}
             <div className="bkgd_div">
                 <h1>Classes in Your Planner</h1>
                 <div className = "grid">

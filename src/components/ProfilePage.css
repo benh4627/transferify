@@ -7,8 +7,9 @@ body {
 }
 
 .profileInfoCard{
+    min-width: 500px;
     width: auto;
-    height: 800px;
+    height: auto;
     background-color: rgb(139, 184, 232);
     margin: 10px;
     border-radius: 25px;
@@ -98,7 +99,8 @@ div.uploadPhoto>label {
     border-color: rgb(180, 180, 180);
     background-color: rgb(238, 235, 235);
     width: auto;
-    height: 1000px;
+    height: auto;
+    min-height: 200px
 }
 
 #source {
@@ -112,4 +114,20 @@ div.uploadPhoto>label {
     border: 1px solid black;
     height: 100px;
     width: 100px;
+}
+
+.planCard {
+  width: 100px;
+  height: auto;
+  background-color: rgb(240, 239, 239);
+  margin: 10px;
+  opacity: 0.9;
+  font-size: 20px;
+  border-radius: 25px;
+  border: 1px solid rgb(180, 180, 180);
+}
+
+.planCard:hover {
+  opacity: 1;
+  background-color: rgb(255, 251, 197);
 }
