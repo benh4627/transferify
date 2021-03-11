@@ -7,12 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Menu from "./navbar.js"
 import StudentDirectoryPage from "./StudentDirectory.js"
-//import StudentDirectoryPage from "./StudentDirectoryTest.js"
 import ClassCardGroup from './classcard.js';
 import ProfilePage from "./ProfilePage.js";
 //import Logo from "./Logo.js";
-
-//import ProfilePage from './Profile.js'
 
 const Home = () => {
   return (<div className="Home">

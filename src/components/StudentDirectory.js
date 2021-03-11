@@ -11,12 +11,12 @@ import './StudentDirectory.css';
 var database = firebase.database();
 const storageRef = storage.ref();
 
-const studentList = [];
-const yearList = [];
-const nameList = [];
-const majorList = [];
-const emailList = [];
-const imageList = [];
+var studentList = [];
+var yearList = [];
+var nameList = [];
+var majorList = [];
+var emailList = [];
+var imageList = [];
 
 var count;
 var nameVals = {};
@@ -101,7 +101,7 @@ function StudentCard(props) {
 
 function StudentDirectory(props) {
     let ret = [];
-    for (let i = 0; i < 1; i++) {  
+    for (let i = 0; i < count; i++) {  
         let person = new student(nameList[i], emailList[i], majorList[i], yearList[i], imageList[i]);     
         console.log("person", person);
         studentList.push(person);
@@ -139,7 +139,7 @@ function StudentDirectoryPage() {
         console.log("emailList", emailList);
         console.log("imageList", imageList);
         
-        for(let i = 0; i < 1; i++) {
+        for(let i = 0; i < count; i++) {
             if ((nameList[i] == undefined) || (emailList[i] == undefined) || 
                 (majorList[i] == undefined) || (yearList[i] == undefined) ||
                 (imageList[i] == undefined)) {
