@@ -19,7 +19,7 @@ const Signup = ({ history }) => {
       img = (event.target.files[0]);
     }
   }, []);
-  
+
   const handleSignUp = useCallback(async event => {
     event.preventDefault();
     const { email, password, name, year, major } = event.target.elements;
@@ -38,6 +38,10 @@ const Signup = ({ history }) => {
           database.ref("emails/" + res.user.uid).set({ email: email.value })
           storage.ref("images/" + res.user.uid).put(img);
           database.ref("uids/" + res.user.uid).set({ uid: res.user.uid });
+          database.ref("class1/" + res.user.uid).set({ class1: "N/A" });
+          database.ref("class2/" + res.user.uid).set({ class2: "N/A" });
+          database.ref("class3/" + res.user.uid).set({ class3: "N/A" });
+          database.ref("class4/" + res.user.uid).set({ class4: "N/A"});
           countRef = database.ref("userCount/")
           countRef.transaction(function (currUsers) {
             return (currUsers || 0) + 1;
