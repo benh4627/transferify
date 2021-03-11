@@ -36,17 +36,17 @@ for (var i = 0; i < data.length; i++) {
 
 function PrereqList(props) {
     var listItems = [];
-    if (props.prereqs == "N/A" || props.prereqs == undefined) {
+    if (props.prereqs == "N/A") {
         return(
             <Card.Text style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>None!</Card.Text>
         );
     }
-    {/*else {
+    else {
         var split_reqs = props.prereqs.split(',');
         for (var i = 0; i < split_reqs.length; i++) {
             listItems.push(<ListGroup.Item>{split_reqs[i]}</ListGroup.Item>);
         }
-    }*/}
+    }
     return(
         <ListGroup variant="flush">
             {listItems}
@@ -73,6 +73,7 @@ const DifficultyBar = (props) => {
 }
 
 function ClassCard(props) {
+    const {currentUser} = useContext(AuthContext);
 
     return(
         <div className="box">
@@ -90,29 +91,108 @@ function ClassCard(props) {
                         <PrereqList prereqs = {props.ClassData.prereqs}/>
                     </div>
                 </div>
-                <Button className='addPlanner' onClick='addToPlanner()'>Add to Planner</Button>
-                <Button className='addPrereq' onClick='addToPrereqs()'>Add to Completed Prereqs</Button>
-                <div id="addedToPlanner" style="display:none;" >Added to Planner</div>
-                <div id="addedToPrereqs" style="display:none;" >Added to Prereqs</div>
+                <Button className='addPlanner' onClick={() => addToPlanner(currentUser,props.ClassData.className,props.ClassData.prereqs)}>Add to Planner</Button>
+                <Button className='addPrereq' onClick={() => addToPrereqs(currentUser,props.ClassData.className)}>Add to Completed Prereqs</Button>
             </div>
         </div>
     );
 }
-
-function addToPlanner() {
-    document.getElementById("addedToPlanner").style.display = "";
-}
-
-function addToPrereqs() {
-    document.getElementById("addedToPrereqs").style.display = "";
-}
-
 var classPlanner;
+var userPrereqs;
 
 function getClassPlanner(data) {
   var classPlannerData = data.val();
   var key = Object.keys(classPlannerData);
   classPlanner = classPlannerData[key];
+}
+
+function getUserPrereqs(data) {
+  var userPrereqsData = data.val();
+  var key = Object.keys(userPrereqsData);
+  userPrereqs = userPrereqsData[key];
+}
+
+function addToPlanner(currentUser, className, prerequisites) {
+    var needPrereqs = false;
+
+    var database = firebase.database();
+
+    const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
+    userPrereqsRef.on("value", getUserPrereqs);
+
+    const classPlannerRef = database.ref("classplanner/" + currentUser.uid);
+    classPlannerRef.on("value", getClassPlanner);
+
+    if (classPlanner != "N/A" && classPlanner != undefined) {
+        var currentClasses = classPlanner.split(',');
+        for (var i = 0; i < currentClasses.length; i++) {
+            if (className == currentClasses[i]) {
+                alert("Error: Already added " + className + " to plan");
+                return;
+            }
+        }
+    }
+
+    if (prerequisites == "N/A") {
+        needPrereqs = false;
+    }
+    else {
+        if (userPrereqs == "N/A" || userPrereqs == undefined) {
+
+            alert("Error: Missing Required Prereq: " + prerequisites);
+            return;
+        }
+        var split_reqs = prerequisites.split(',');
+        var split_userreqs = userPrereqs.split(',');
+        for (var i = 0; i < split_reqs.length; i++) {
+            if(split_reqs[i].includes("or")) {
+                var mult_options = split_reqs[i].split(" or ");
+                var completed = false;
+                for (var j = 0; j < mult_options.length; j++) {
+                    if (split_userreqs.includes(mult_options[j])) {
+                        completed = true;
+                    }
+                }
+                if (completed == false) {
+                    alert("Error: Missing Required Prereq: " + split_reqs[i]);
+                    return;
+                }
+            }
+            else {
+                if (!split_userreqs.includes(split_reqs[i])) {
+                    alert("Error: Missing Required Prereq: " + split_reqs[i]);
+                    needPrereqs = true;
+                    break;
+                }
+            }
+        }
+    }
+    if (needPrereqs == false) {
+        if (classPlanner == "N/A" || classPlanner == undefined) {
+            classPlannerRef.set({classPlanner: className});
+        }
+        else {
+            classPlannerRef.set({classPlanner: classPlanner.concat("," + className)});
+        }
+        alert("ADDED TO PLANNER");
+
+    }
+}
+
+function addToPrereqs(currentUser, className) {
+    var database = firebase.database();
+
+    const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
+    userPrereqsRef.on("value", getUserPrereqs);
+    console.log(userPrereqs);
+
+    if (userPrereqs == "N/A" || userPrereqs == undefined) {
+        userPrereqsRef.set({prereqs: className});
+    }
+    else {
+        userPrereqsRef.set({prereqs: userPrereqs.concat("," + className)});
+    }
+    alert("ADDED TO PREREQS");
 }
 
 function CurrClasses(props) {
@@ -123,9 +203,8 @@ function CurrClasses(props) {
 
     const classPlannerRef = database.ref("classplanner/" + currentUser.uid);
     classPlannerRef.on("value", getClassPlanner);
-    console.log(classPlanner);
 
-    if (classPlanner == "N/A") {
+    if (classPlanner == "N/A" || classPlanner == undefined) {
         return(
             <p style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>No Classes in Planner. Add from classes below!</p>
         );
