@@ -22,6 +22,7 @@ const Signup = ({ history }) => {
           database.ref("names/" + res.user.uid).set({ name: name.value })
           database.ref("years/" + res.user.uid).set({ gradYear: year.value })
           database.ref("majors/" + res.user.uid).set({ major: major.value })
+          database.ref("emails/" + res.user.uid).set({ email: email.value })
           countRef = database.ref("userCount/")
           countRef.transaction(function (currUsers) {
             return (currUsers || 0) + 1;
@@ -42,10 +43,8 @@ const Signup = ({ history }) => {
             <input name="email" type="email" placeholder="Email" />
             <input name="year" type="year" placeholder="Graduation Year" />
             <input name="major" type="major" placeholder="Major" />
-            <input name="password" type="password" placeholder="Password" />
-         <div>
+            <input name="password" type="password" placeholder="Password" /> 
             <button type="submit">Sign Up</button>
-         </div>
         </form>
       </div>      
     );
