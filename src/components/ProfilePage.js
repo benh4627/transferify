@@ -17,16 +17,15 @@ function Planner() {
   if (myclass){
     console.log(myclass)
     var classes = myclass;
-    var start = 0;
     var end = classes.search(",");
+    var eachClass;
     while (end > 0) {
-      var eachClass = myclass.slice(start, end)
+      eachClass = classes.slice(0, end)
       classList.push(eachClass);
-      start = end+1;
-      classes = classes.slice(end);
+      classes = classes.slice(end+1);
       var end = classes.search(",");
     }
-    eachClass = myclass.slice(start);
+    eachClass = classes;
     classList.push(eachClass);
     console.log("class list: ", classList);
 
@@ -120,7 +119,7 @@ const ProfilePage = () => {
                 <img src={url ? url : blankPic} alt="studentPic" />
             </div>
             <form class = "profileLabels">
-              <label>Name: {currentUser.displayName}</label>
+              <label>Name: </label>
               <br></br>
               <label>Email: {currentUser.email}</label>
               <br></br>
