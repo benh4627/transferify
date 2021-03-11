@@ -73,6 +73,10 @@ div.uploadPhoto>label {
   margin-top: 1rem;
 }
 
+div.profileInfoCard>h1 {
+  color: white;
+}
+
 .profilePlan {
     width: auto;
     height: auto;
