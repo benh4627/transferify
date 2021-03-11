@@ -4,6 +4,7 @@ import { AuthContext } from "../Auth.js";
 import firebase from 'firebase';
 import { storage } from "../base.js"
 import "./ProfilePage.css"
+import blankPic from '../images/blank_profile.png'
 
 var year;
 var major;
@@ -72,35 +73,29 @@ const ProfilePage = () => {
     );
   };
   
-  const imgRef = storage.ref("images/" + currentUser.uid);
-  const imgUrl = imgRef.getDownloadURL().then(url => {setUrl(url)});
-  
-  const yearRef = database.ref("years/" + currentUser.uid);
-  yearRef.on("value", getYear);
+   useEffect(() => { 
+        const imgRef = storage.ref("images/" + currentUser.uid);
+        const imgUrl = imgRef.getDownloadURL().then(url => {setUrl(url)});
+    
+        const yearRef = database.ref("years/" + currentUser.uid);
+        yearRef.on("value", (data) => {
+            var yearData = data.val();
+            var key = Object.keys(yearData);
+            year = yearData[key];
+        });
 
-  const majorRef = database.ref("majors/" + currentUser.uid);
-  majorRef.on("value", getMajor);
-
-  const countRef = database.ref("userCount/");
-  countRef.on("value", getCount);
-  
-  function getYear(data) {
-    var yearData = data.val();
-    var key = Object.keys(yearData);
-    year = yearData[key];
-  }
-
-  function getMajor(data) {
-    var majorData = data.val();
-    var key = Object.keys(majorData);
-    major = majorData[key];
-  }
-  
-  function getCount(snap) {
-    count = snap.val();
-  }
-  
-  console.log(count);
+        const majorRef = database.ref("majors/" + currentUser.uid);
+        majorRef.on("value", (data) => {
+            var majorData = data.val();
+            var key = Object.keys(majorData);
+            major = majorData[key];
+        });
+    
+        const countRef = database.ref("userCount/");
+        countRef.on("value", (snap) => {
+            count = snap.val();
+        });
+    }, []);
 
   return ( 
     <div>
@@ -108,16 +103,16 @@ const ProfilePage = () => {
             <h1 class='profileTitle'>Student Information</h1>
  
             <div class = "Pic">
-                <img src={url} alt="studentPic" />
+                <img src={url ? url : blankPic} alt="studentPic" />
             </div>
             <form class = "profileLabels">
                 <label>Name: {currentUser.displayName}</label>
                 <br></br>
                 <label>Email: {currentUser.email}</label>
                 <br></br>
-                <label>Graduation Year: {year}</label>
+                <label>Graduation Year: {year ? year : "Retrieving data"}</label>
                 <br></br>
-                <label>Major: {major}</label>
+                <label>Major: {major ? major : "Retrieving data"}</label>
              </form>
 
       
