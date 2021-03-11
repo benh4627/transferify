@@ -22,6 +22,8 @@ var majorVals = {};
 var emailVals = {};
 var uidVals = {};
 
+var keyword = "";
+
 class student {
     constructor(name, email, major, year, image) {
         this.name = name;
@@ -75,7 +77,7 @@ function StudentCard(props) {
     
     if (props.student) {
         return (
-            <button type='button' class='studentCard'>
+            <button id={props.id} type='button' class='studentCard'>
                 <div class='studentName'>
                     <b>{getName()}</b>
                 </div> <br/>
@@ -99,15 +101,33 @@ function StudentCard(props) {
 
 function StudentDirectory(props) {
     let ret = [];
-    for (let i = 0; i < uidList.length; i++) { 
-        ret.push( <StudentCard student={studentList[i]}/> );
+    for (let i = 0; i < uidList.length; i++) {  
+        var thisID = "student"+i
+        ret.push(
+            <StudentCard id={thisID} student={studentList[i]}/>
+        );
     }
     return ret;
 }
 
+
 function SearchStudentList() {
+    var search = document.getElementById("search").value;
+    console.log("searching ", search);
+    for (let i = 0; i < count; i++) {
+        var thisName = nameList[i].name;
+        if (thisName.toUpperCase().indexOf(search.toUpperCase()) > -1){
+            console.log("match")
+            document.getElementById("student"+i).style.display = "";
+        }
+        else {
+            document.getElementById("student"+i).style.display = "none";
+        }
+    }
+    
+    /*
     let ret = [];
-    var search = document.getElementById("search");
+    var search = document.getElementById("search").value;
     for (let i = 0 ; i < studentList.length ; i++) {
         if (search==studentList[i].name)
         ret.push(
@@ -115,6 +135,7 @@ function SearchStudentList() {
         );
     }
     return ret;
+    */
 }
 
 function StudentDirectoryPage() {    
@@ -173,9 +194,9 @@ function StudentDirectoryPage() {
         <div>
             {/*<Logo />*/}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-            <form id='search' class='top'>
-                <input class='searchBar' type="text" placeholder="Search"></input>
-                <button type="submit" onClick='SearchStudentList'><i class="fa fa-search"></i></button>
+            <form class='top'>
+                <input id="search" type="text" placeholder="Search"></input>
+                <button type="button" onClick={SearchStudentList}><i class="fa fa-search"></i></button>
             </form>
             <div id='studentDirectory' class='studentDirectory'>
                 {(studentList.length > 0) ? <StudentDirectory /> : <p>Gathering data, return later</p>}
