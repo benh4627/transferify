@@ -14,15 +14,15 @@ const storageRef = storage.ref();
 const studentList = [];
 var uidList = [];
 var urlList = [];
+var nameList = [];
 
 var count;
+var keyword = "";
 var nameVals = {};
 var yearVals = {}; 
 var majorVals = {};
 var emailVals = {};
 var uidVals = {};
-
-var keyword = "";
 
 class student {
     constructor(name, email, major, year, image) {
@@ -114,7 +114,7 @@ function StudentDirectory(props) {
 function SearchStudentList() {
     var search = document.getElementById("search").value;
     console.log("searching ", search);
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < uidList.length; i++) {
         var thisName = nameList[i].name;
         if (thisName.toUpperCase().indexOf(search.toUpperCase()) > -1){
             console.log("match")
@@ -171,7 +171,10 @@ function StudentDirectoryPage() {
         
         const namesRef = database.ref("names/");
         namesRef.on("value", (data) => {
-            nameVals = data.val(); 
+            nameVals = data.val();
+            var names = Object.keys(nameVals);
+            for (var i = 0; i < names.length; i++)
+                nameList.push(nameVals[names[i]]);
         });
         
         const yearsRef = database.ref("years/");
