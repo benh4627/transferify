@@ -45,7 +45,7 @@ const Signup = ({ history }) => {
             <input name="email" type="email" placeholder="Email" />
             <input name="year" type="year" placeholder="Graduation Year" />
             <input name="major" type="major" placeholder="Major" />
-            <input name="password" type="password" placeholder="Password" /> 
+            <input name="password" type="password" placeholder="Password" />
             <button type="submit">Sign Up</button>
         </form>
       </div>

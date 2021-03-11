@@ -97,6 +97,30 @@ function ClassCard(props) {
         </div>
     );
 }
+
+function ClassPlannerCard(props) {
+
+    return(
+        <div className="box">
+            <b>{props.ClassData.className}</b>
+            <div>
+                <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.units} Units</Card.Subtitle>
+                <div className="description">
+                    <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
+                    <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
+                </div>
+                <div>
+                    <DifficultyBar difficulty = {props.ClassData.difficulty}/>
+                    <div className = "prereqs">
+                        <Card.Subtitle>Prerequisites:</Card.Subtitle>
+                        <PrereqList prereqs = {props.ClassData.prereqs}/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 var classPlanner;
 var userPrereqs;
 
@@ -222,7 +246,7 @@ function CurrClasses(props) {
         }
 
         for (var i = 0; i < currClassList.length; i++) {
-            listItems.push(<ClassCard ClassData = {currClassList[i]}/>);
+            listItems.push(<ClassPlannerCard ClassData = {currClassList[i]}/>);
 
         }
         return listItems;
