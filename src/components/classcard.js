@@ -218,7 +218,16 @@ function addToPrereqs(currentUser, className) {
 
     const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
     userPrereqsRef.on("value", getUserPrereqs);
-    console.log(userPrereqs);
+
+    if (userPrereqs != "N/A" && userPrereqs != undefined) {
+        var currentPrereqs = userPrereqs.split(',');
+        for (var i = 0; i < currentPrereqs.length; i++) {
+            if (className == currentPrereqs[i]) {
+                alert("Error: Already added " + className + " to completed prereqs");
+                return;
+            }
+        }
+    }
 
     if (userPrereqs == "N/A" || userPrereqs == undefined) {
         userPrereqsRef.set({prereqs: className});
@@ -254,7 +263,6 @@ function CompletedPrereqs(props) {
                     j = classList.length;
                 }
             }
-            console.log(completedClassList);
         }
 
         for (var i = 0; i < completedClassList.length; i++) {
