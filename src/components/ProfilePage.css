@@ -55,7 +55,7 @@ body {
   width: 90px;
   height: 30px;
   font-size: 15px;
-  display: initial;
+  display: inline;
   text-align: center;
   padding: 0px; 
 }
