@@ -135,3 +135,46 @@ div.profileInfoCard>h1 {
   opacity: 1;
   background-color: rgb(255, 251, 197);
 }
+#class12 {
+    float:left;
+    margin: 10px;
+    border-radius: 15px;
+    border: 1px solid rgb(180, 180, 180);
+    width:120px;
+    height: 80px;
+}
+#class34 {
+    float:right;
+    margin:10px;
+    border-radius: 15px;
+    border: 1px solid rgb(180, 180, 180);
+    width:120px;
+    height: 80px;
+}
+
+.class12:hover {
+  opacity: 1;
+  background-color: rgb(255, 251, 197);
+}
+.class34:hover {
+  opacity: 1;
+  background-color: rgb(255, 251, 197);
+}
+#class12:empty {
+  position: relative;
+}
+#class12:empty:before {
+  color: #808080;
+  content: "Drag a class here";
+  display: contents;
+  position: absolute;
+}
+#class34:empty {
+  position: relative;
+}
+#class34:empty:before {
+  color: #808080;
+  content: "Drag a class here";
+  display: contents;
+  position: absolute;
+}
