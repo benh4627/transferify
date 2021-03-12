@@ -218,6 +218,7 @@ function addToPrereqs(currentUser, className) {
 
     const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
     userPrereqsRef.on("value", getUserPrereqs);
+    console.log(userPrereqs);
 
     if (userPrereqs == "N/A" || userPrereqs == undefined) {
         userPrereqsRef.set({prereqs: className});
@@ -226,6 +227,40 @@ function addToPrereqs(currentUser, className) {
         userPrereqsRef.set({prereqs: userPrereqs.concat("," + className)});
     }
     alert("ADDED TO PREREQS");
+}
+
+function CompletedPrereqs(props) {
+    const {currentUser} = useContext(AuthContext);
+    var database = firebase.database();
+    var listItems = [];
+    var completedClassList = [];
+
+    const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
+    userPrereqsRef.on("value", getUserPrereqs);
+
+    if (userPrereqs == "N/A" || userPrereqs == undefined) {
+        return(
+            <p style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>No Completed Courses.  Update from classes below.</p>
+        );
+    }
+    else {
+        var classNames = userPrereqs.split(',');
+        for (var i = 0; i < classNames.length; i++) {
+            for (var j = 0; j < classList.length; j++) {
+                if (classNames[i] == classList[j].className) {
+                    let newClass = new ClassData(classList[j].className, classList[j].classType, classList[j].classDescription, 
+                                                 classList[j].prereqs, classList[j].units, classList[j].difficulty);
+                    completedClassList.push(newClass);
+                    j = classList.length;
+                }
+            }
+        }
+
+        for (var i = 0; i < completedClassList; i++) {
+            listItems.push(<ClassPlannerCard ClassData = {completedClassList[i]}/>);
+        }
+        return listItems;
+    }
 }
 
 function CurrClasses(props) {
@@ -278,6 +313,12 @@ function ClassCardGroup(props) {
     return(
         <div className="center">
             {/*<Logo />*/}
+            <div className="bkgd_div">
+                <h1>Completed Courses</h1>
+                <div className = "grid">
+                    <CompletedPrereqs />
+                </div>
+            </div>
             <div className="bkgd_div">
                 <h1>Classes in Your Planner</h1>
                 <div className = "grid">
