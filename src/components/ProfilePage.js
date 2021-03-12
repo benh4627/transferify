@@ -109,9 +109,9 @@ const ProfilePage = () => {
     var editinfo = document.getElementsByClassName("editProfile");
     for (var i = 0; i < editinfo.length; i++) {
       console.log("show");
-      editinfo[i].style.display = "initial";
+      editinfo[i].style.display = "inline";
     }
-    document.getElementById("submitButton").style.display = "initial";
+    document.getElementById("submitButton").style.display = "inline";
   };
 
   const UpdateProfile = () => {
@@ -131,9 +131,9 @@ const ProfilePage = () => {
 
     var setinfo = document.getElementsByClassName("setProfile");
     for (var i = 0; i < setinfo.length; i++) {
-      setinfo[i].style.display = "initial";
+      setinfo[i].style.display = "inline";
     }
-    document.getElementById("editButton").style.display = "initial";
+    document.getElementById("editButton").style.display = "inline";
     var editinfo = document.getElementsByClassName("editProfile");
     for (var i = 0; i < editinfo.length; i++) {
       editinfo[i].style.display = "none";
@@ -235,7 +235,7 @@ const ProfilePage = () => {
               <label class="editProfile">Major:    </label><input id="newMajor" type='text' class="editProfile" placeholder={major ? major : "Retrieving data..."}></input>
               <br/>
               
-              <button type="button" id="editButton" class="editButton" width="50px" onClick={EditProfile}>Edit</button>
+              <button type="button" id="editButton" class="editButton" onClick={EditProfile}>Edit</button>
               <button type="button" id="submitButton" class="submitButton" onClick={UpdateProfile}>Submit</button>
              </form>
 

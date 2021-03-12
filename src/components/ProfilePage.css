@@ -38,6 +38,16 @@ body {
     color: white;
 }
 
+.uploadPhoto {
+  text-align: center;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.setProfile {
+  display: inline;
+}
 
 .profileLabels>input {
     color: black;
