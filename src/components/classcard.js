@@ -99,6 +99,7 @@ function ClassCard(props) {
 }
 
 function ClassPlannerCard(props) {
+    const {currentUser} = useContext(AuthContext);
 
     return(
         <div className="box">
@@ -116,6 +117,7 @@ function ClassPlannerCard(props) {
                         <PrereqList prereqs = {props.ClassData.prereqs}/>
                     </div>
                 </div>
+                <Button className='removeFromPlanner' onClick={() => removeFromPlanner(currentUser,props.ClassData.className)}>Remove From Class Planner</Button>
             </div>
         </div>
     );
@@ -134,6 +136,14 @@ function getUserPrereqs(data) {
   var userPrereqsData = data.val();
   var key = Object.keys(userPrereqsData);
   userPrereqs = userPrereqsData[key];
+}
+
+function removeFromPlanner(currentUser, className) {
+    var database = firebase.database();
+    const classPlannerRef = database.ref("classplanner/" + currentUser.uid);
+    classPlannerRef.on("value", getClassPlanner);
+
+
 }
 
 function addToPlanner(currentUser, className, prerequisites) {
