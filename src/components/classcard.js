@@ -120,7 +120,7 @@ function SimpleCard(props) {
 
 function ClassPlannerCard(props) {
     const {currentUser} = useContext(AuthContext);
-    
+
     return(
         <div className="box">
             <b>{props.ClassData.className}</b>
@@ -276,15 +276,13 @@ function addToPrereqs(currentUser, className) {
 
 function removeFromPrereqs(currentUser, className) {
     var database = firebase.database();
-
     const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
     userPrereqsRef.on("value", getUserPrereqs);
-
     var new_prereqs = "";
     var currentList = userPrereqs.split(',');
     for (var i = 0; i < currentList.length; i++) {
         if (className != currentList[i]) {
-            if (new_prereqs = "") {
+            if (new_prereqs == "") {
                 new_prereqs = new_prereqs.concat(currentList[i]);
             }
             else {
@@ -292,13 +290,12 @@ function removeFromPrereqs(currentUser, className) {
             }
         }
     }
-    if (new_prereqs = "") {
+    if (new_prereqs == "") {
         userPrereqsRef.set({userPrereqs: "N/A"});
     }
     else {
         userPrereqsRef.set({userPrereqs: new_prereqs});
     }
-
     alert("Removed from Completed Courses")
 }
 
@@ -311,6 +308,8 @@ function CompletedPrereqs(props) {
     const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
     userPrereqsRef.on("value", getUserPrereqs);
 
+    if (userPrereqs == ",")
+        userPrereqs = "N/A";
     if (userPrereqs == "N/A" || userPrereqs == undefined) {
         return(
             <p style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>No Completed Courses.  Update from classes below.</p>
