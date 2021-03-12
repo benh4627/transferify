@@ -109,3 +109,11 @@ body {
 .addPrereq {
     margin: 10px;
 }
+.removeFromPlanner {
+    background-color: #e60000;
+    border-color: #e60000;
+}
+
+.removeFromPlanner:hover {
+    background-color: #ff4d4d;
+}
