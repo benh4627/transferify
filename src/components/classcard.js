@@ -248,15 +248,16 @@ function CompletedPrereqs(props) {
         for (var i = 0; i < classNames.length; i++) {
             for (var j = 0; j < classList.length; j++) {
                 if (classNames[i] == classList[j].className) {
-                    let newClass = new ClassData(classList[j].className, classList[j].classType, classList[j].classDescription, 
-                                                 classList[j].prereqs, classList[j].units, classList[j].difficulty);
+                    console.log("add to array");
+                    let newClass = new ClassData(classList[j].className, classList[j].classType, classList[j].classDescription,classList[j].prereqs, classList[j].units, classList[j].difficulty);
                     completedClassList.push(newClass);
                     j = classList.length;
                 }
             }
+            console.log(completedClassList);
         }
 
-        for (var i = 0; i < completedClassList; i++) {
+        for (var i = 0; i < completedClassList.length; i++) {
             listItems.push(<ClassPlannerCard ClassData = {completedClassList[i]}/>);
         }
         return listItems;
