@@ -142,6 +142,25 @@ function removeFromPlanner(currentUser, className) {
     var database = firebase.database();
     const classPlannerRef = database.ref("classplanner/" + currentUser.uid);
     classPlannerRef.on("value", getClassPlanner);
+    var new_planner = "";
+    var currentClasses = classPlanner.split(',');
+    for (var i = 0; i < currentClasses.length; i++) {
+        if (className != currentClasses[i]) {
+            if (new_planner == "") {
+                new_planner = new_planner.concat(currentClasses[i]);
+            }
+            else {
+                new_planner = new_planner.concat("," + currentClasses[i]);
+            }
+        }
+    }
+    if (new_planner == "") {
+        classPlannerRef.set({classPlanner: "N/A"});
+    }
+    else {
+        classPlannerRef.set({classPlanner: new_planner});
+    }
+    alert("Removed class from Planner");
 
 
 }
