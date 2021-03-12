@@ -219,24 +219,27 @@ const ProfilePage = () => {
             <div class = "Pic">
                 <img src={url ? url : blankPic} alt="studentPic" />
             </div>
-            <form className = "profileLabels">
+            <form class = "profileLabels">
               <label className="setProfile">Name: {name ? name : "Retrieving data"}</label>
-              <label className="editProfile">Name:    </label><input id="newName" type='text' className="editProfile" placeholder={name ? name : "Retrieving data"}></input>
+              <label className="editProfile">Name:    </label>
+              <input id="newName" type='text' className="editProfile" placeholder={name ? name : "Retrieving data"}></input>
               <br></br>
               
               <label >Email: {currentUser.email}</label>
               <br></br>
 
               <label className="setProfile">Graduation Year: {year ? year : "Retrieving data"}</label>
-              <label className="editProfile">Graduation Year:  </label><input id="newYear" type='text' className="editProfile" placeholder={year ? year : "Retrieving data..."}></input>
+              <label className="editProfile">Graduation Year:  </label>
+              <input id="newYear" type='text' className="editProfile" placeholder={year ? year : "Retrieving data..."}></input>
               <br></br>
 
               <label className="setProfile">Major: {major ? major : "Retrieving data"}</label>
-              <label className="editProfile">Major:    </label><input id="newMajor" type='text' className="editProfile" placeholder={major ? major : "Retrieving data..."}></input>
+              <label className="editProfile">Major:    </label>
+              <input id="newMajor" type='text' className="editProfile" placeholder={major ? major : "Retrieving data..."}></input>
               <br/>
               
-              <button type="button" id="editButton" className="editButton" onClick={EditProfile}>Edit</button>
-              <button type="button" id="submitButton" className="submitButton" onClick={UpdateProfile}>Submit</button>
+              <button type="button" id="editButton" class="editButton" onClick={EditProfile}>Edit</button>
+              <button type="button" id="submitButton" class="submitButton" onClick={UpdateProfile}>Submit</button>
              </form>
 
 

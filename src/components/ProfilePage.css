@@ -45,22 +45,17 @@ body {
   margin-left: auto;
 }
 
-.setProfile {
-  display: inline;
-}
-
 .profileLabels>input {
     color: black;
     background: #f1f1f1;
 }
 
 .editButton {
-  width: 90px;
-  height: 30px;
-  font-size: 15px;
   display: inline;
-  text-align: center;
-  padding: 0px;
+}
+
+.submitButton {
+  display: none;
 }
 
 input[type=text]:focus {
@@ -93,6 +88,14 @@ div.Pic>img {
   padding: 2px;
   border: 1px solid rgb(197, 197, 197);
   margin: 10px;
+}
+
+.setProfile {
+  display: inline;
+}
+
+.editProfile {
+  display: none;
 }
 
 button.editButton, button.submitButton {
