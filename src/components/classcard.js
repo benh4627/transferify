@@ -208,7 +208,6 @@ function addToPrereqs(currentUser, className) {
 
     const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
     userPrereqsRef.on("value", getUserPrereqs);
-    console.log(userPrereqs);
 
     if (userPrereqs == "N/A" || userPrereqs == undefined) {
         userPrereqsRef.set({prereqs: className});
