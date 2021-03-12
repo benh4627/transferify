@@ -14,7 +14,6 @@ const storageRef = storage.ref();
 const studentList = [];
 var uidList = [];
 var urlList = [];
-var nameList = [];
 
 var count;
 var keyword = "";
@@ -79,7 +78,7 @@ function StudentCard(props) {
         return (
             <button id={props.id} type='button' class='studentCard'>
                 <div class='studentName'>
-                    <b>{getName()}</b>
+                    <b id={props.id+"name"}>{getName()}</b>
                 </div> <br/>
                 <img class='studentPicture' src={getImage()} />
                 <div class='studentInfo'>
@@ -101,8 +100,10 @@ function StudentCard(props) {
 
 function StudentDirectory(props) {
     let ret = [];
+    console.log("uidList: ", uidList)
     for (let i = 0; i < uidList.length; i++) {  
-        var thisID = "student"+i
+        var thisID = "student"+uidList[i];
+        console.log("show ", thisID)
         ret.push(
             <StudentCard id={thisID} student={studentList[i]}/>
         );
@@ -110,18 +111,18 @@ function StudentDirectory(props) {
     return ret;
 }
 
-
 function SearchStudentList() {
     var search = document.getElementById("search").value;
     console.log("searching ", search);
     for (let i = 0; i < uidList.length; i++) {
-        var thisName = nameList[i].name;
+        var thisID = "student"+uidList[i];
+        var thisName = document.getElementById(thisID+"name").textContent;
         if (thisName.toUpperCase().indexOf(search.toUpperCase()) > -1){
-            console.log("match")
-            document.getElementById("student"+i).style.display = "";
+            console.log("match", thisName, i)
+            document.getElementById("student"+uidList[i]).style.display = "inline";
         }
         else {
-            document.getElementById("student"+i).style.display = "none";
+            document.getElementById("student"+uidList[i]).style.display = "none";
         }
     }
     
@@ -173,8 +174,6 @@ function StudentDirectoryPage() {
         namesRef.on("value", (data) => {
             nameVals = data.val();
             var names = Object.keys(nameVals);
-            for (var i = 0; i < names.length; i++)
-                nameList.push(nameVals[names[i]]);
         });
         
         const yearsRef = database.ref("years/");
@@ -197,10 +196,10 @@ function StudentDirectoryPage() {
         <div>
             {/*<Logo />*/}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-            <form class='top'>
+            <div class='top'>
                 <input id="search" type="text" placeholder="Search"></input>
                 <button type="button" onClick={SearchStudentList}><i class="fa fa-search"></i></button>
-            </form>
+            </div>
             <div id='studentDirectory' class='studentDirectory'>
                 {(studentList.length > 0) ? <StudentDirectory /> : <p>Gathering data, return later</p>}
             </div>

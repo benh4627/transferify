@@ -51,10 +51,6 @@ body {
     text-align: center;
 }
 
-.top {
-    display: flex;
-}
-
 .top input {
     width: 45%;
     border: 1px solid rgb(197, 197, 197);
