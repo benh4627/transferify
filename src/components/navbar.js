@@ -40,13 +40,6 @@ class Menu extends Component {
 
     render() {
         return (
-            <div className="container" ref={this.container}>
-                <button
-                    onClick={this.handleClickButton}
-                    type="button"
-                    class="button"
-                > ☰ </button>
-                {this.state.open && (
                     <div class = "dropdown">
                         <ul>
                             <li><Link to="/"> Home </Link></li>
@@ -55,8 +48,7 @@ class Menu extends Component {
                             <li> <Link to="/classplanner"> Class Planner</Link></li>
                         </ul>
                     </div>
-                ) }
-            </div>
+                
         );
     }
 }

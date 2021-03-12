@@ -1,7 +1,4 @@
 .container {
-  top: 0;
-  right: 0;
-  position: absolute;
 }
 .button {
   padding: 0;
@@ -20,6 +17,9 @@
   box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.14);
   margin: 5px;
   border-radius: 7px;
+  top: 0;
+  right: 0;
+  position: absolute;
 }
 button:hover {
   color: rgb(223, 223, 223);

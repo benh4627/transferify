@@ -57,8 +57,8 @@ const Signup = ({ history }) => {
   return (
     <div className="Signup">
       <Logo />
-        <p>Sign up with a profile picture, name, email, graduation year, major, and password</p>
-        <input type="file" onChange={handleChange} />
+        <p>Add a profile picture</p>
+        <input type="file" id="pic" onChange={handleChange} />
         <form onSubmit={handleSignUp}>
             <input name="name" type="name" placeholder="Full Name" />
             <input name="email" type="email" placeholder="Email" />
