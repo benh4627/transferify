@@ -214,7 +214,7 @@ const ProfilePage = () => {
   return (
     <div>
         <div className = "profileInfoCard">
-            <h1 class='profileTitle'>Student Information</h1>
+            <h1 className='profileTitle'>Student Information</h1>
 
             <div class = "Pic">
                 <img src={url ? url : blankPic} alt="studentPic" />
@@ -238,8 +238,8 @@ const ProfilePage = () => {
               <input id="newMajor" type='text' className="editProfile" placeholder={major ? major : "Retrieving data..."}></input>
               <br/>
               
-              <button type="button" id="editButton" className="editButton" onClick={EditProfile}>Edit</button>
-              <button type="button" id="submitButton" className="submitButton" onClick={UpdateProfile}>Submit</button>
+              <button type="button" id="editButton" class="editButton" onClick={EditProfile}>Edit</button>
+              <button type="button" id="submitButton" class="submitButton" onClick={UpdateProfile}>Submit</button>
              </form>
 
 
@@ -251,10 +251,10 @@ const ProfilePage = () => {
             </div>
         </div>
 
-        <div class='profilePlan'>
-            <h1 class='planTitle'>Planning Schedule</h1>
+        <div className='profilePlan'>
+            <h1 className='planTitle'>Planning Schedule</h1>
                 <div>Completed Prereqs: {completedPrereqs} </div>
-                <div class='planner'>
+                <div className='planner'>
                   <Planner/>
                 </div>
             </div>
