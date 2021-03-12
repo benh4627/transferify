@@ -5,7 +5,7 @@ Run the following commands:\
 npm install --save-dev express cors\
 npm install react-bootstrap-validation --save\
 npm install react-router-dom --save\
-npm install firebase\
+npm install firebase
 
 ## Available Scripts
 
