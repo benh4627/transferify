@@ -34,6 +34,19 @@ body {
     white-space: pre;
     background-color: rgb(180, 180, 180);
     height: auto;
+    text-align: center;
+    color: white;
+}
+
+
+.profileLabels>input {
+    color: black;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus {
+  background-color: #E5E4E2;
+  outline: none;
 }
 
 .uploadPhoto {
@@ -41,32 +54,6 @@ body {
   display: block;
   margin-right: auto;
   margin-left: auto;
-}
-
-.setProfile {
-  display: initial;
-}
-
-.editProfile {
-  display: none;
-}
-
-.editButton {
-  width: 90px;
-  height: 30px;
-  font-size: 15px;
-  display: initial;
-  text-align: center;
-  padding: 0px; 
-}
-
-.submitButton {
-  width: 90px;
-  height: 30px;
-  font-size: 15px;
-  display: none;
-  text-align: center;
-  padding: 0px;
 }
 
 progress[value] {
@@ -87,6 +74,20 @@ div.Pic>img {
   padding: 2px;
   border: 1px solid rgb(197, 197, 197);
   margin: 10px;
+}
+
+button.editButton, button.submitButton {
+  background-color: rgb(39,116,174);
+  color: white;
+  padding: 10px 20px;
+  margin: 2px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  opacity: 0.9;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 14px;
 }
 
 div.uploadPhoto>label {
@@ -160,4 +161,54 @@ div.profileInfoCard>h1 {
 .planCard:hover {
   opacity: 1;
   background-color: rgb(255, 251, 197);
+}
+
+#class12 {
+    float:left;
+    margin: 10px;
+    border-radius: 15px;
+    border: 1px solid rgb(180, 180, 180);
+    width:120px;
+    height: 80px;
+}
+
+#class34 {
+    float:right;
+    margin:10px;
+    border-radius: 15px;
+    border: 1px solid rgb(180, 180, 180);
+    width:120px;
+    height: 80px;
+}
+
+.class12:hover {
+  opacity: 1;
+  background-color: rgb(255, 251, 197);
+}
+
+.class34:hover {
+  opacity: 1;
+  background-color: rgb(255, 251, 197);
+}
+
+#class12:empty {
+  position: relative;
+}
+
+#class12:empty:before {
+  color: #808080;
+  content: "Drag a class here";
+  display: contents;
+  position: absolute;
+}
+
+#class34:empty {
+  position: relative;
+}
+
+#class34:empty:before {
+  color: #808080;
+  content: "Drag a class here";
+  display: contents;
+  position: absolute;
 }
