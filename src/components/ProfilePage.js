@@ -6,6 +6,7 @@ import { storage } from "../base.js"
 import "./ProfilePage.css"
 import blankPic from '../images/blank_profile.png'
 
+var name;
 var year;
 var major;
 var count;
@@ -79,10 +80,60 @@ const ProfilePage = () => {
     );
   };
   
+  const EditProfile = () => {
+    var setinfo = document.getElementsByClassName("setProfile");
+    for (var i = 0; i < setinfo.length; i++) {
+      console.log("hide");
+      setinfo[i].style.display = "none";
+    }
+    document.getElementById("editButton").style.display = "none";
+    var editinfo = document.getElementsByClassName("editProfile");
+    for (var i = 0; i < editinfo.length; i++) {
+      console.log("show");
+      editinfo[i].style.display = "initial";
+    }
+    document.getElementById("submitButton").style.display = "initial";
+  };
+
+  const UpdateProfile = () => {
+    var newName = document.getElementById("newName").value;
+    var newYear = document.getElementById("newYear").value;
+    var newMajor = document.getElementById("newMajor").value;
+    console.log(newName, newYear, newMajor);
+    if (newName != "") {
+      database.ref("names/" + currentUser.uid).update({name: newName});
+    }
+    if (newYear != "") {
+      database.ref("years/" + currentUser.uid).update({gradYear: newYear});
+    }
+    if (newMajor != "") {
+      database.ref("majors/" + currentUser.uid).update({major: newMajor});
+    }
+
+    var setinfo = document.getElementsByClassName("setProfile");
+    for (var i = 0; i < setinfo.length; i++) {
+      setinfo[i].style.display = "initial";
+    }
+    document.getElementById("editButton").style.display = "initial";
+    var editinfo = document.getElementsByClassName("editProfile");
+    for (var i = 0; i < editinfo.length; i++) {
+      editinfo[i].style.display = "none";
+    }
+    document.getElementById("submitButton").style.display = "none";
+  };
+
+
    useEffect(() => { 
         const imgRef = storage.ref("images/" + currentUser.uid);
         const imgUrl = imgRef.getDownloadURL().then(url => {setUrl(url)});
-    
+
+        const nameRef = database.ref("names/" + currentUser.uid);
+        nameRef.on("value", (data) => {
+            var nameData = data.val();
+            var key = Object.keys(nameData);
+            name = nameData[key];
+        });
+
         const yearRef = database.ref("years/" + currentUser.uid);
         yearRef.on("value", (data) => {
             var yearData = data.val();
@@ -119,13 +170,23 @@ const ProfilePage = () => {
                 <img src={url ? url : blankPic} alt="studentPic" />
             </div>
             <form class = "profileLabels">
-              <label>Name: {currentUser.displayName}</label>
+              <label class="setProfile">Name: {name ? name : "Retrieving data"}</label>
+              <label class="editProfile">Name:    </label><input id="newName" type='text' class="editProfile" placeholder={name ? name : "Retrieving data"}></input>
               <br></br>
-              <label>Email: {currentUser.email}</label>
+              
+              <label >Email: {currentUser.email}</label>
               <br></br>
-              <label>Graduation Year: {year ? year : "Retrieving data"}</label>
+
+              <label class="setProfile">Graduation Year: {year ? year : "Retrieving data"}</label>
+              <label class="editProfile">Graduation Year:  </label><input id="newYear" type='text' class="editProfile" placeholder={year ? year : "Retrieving data..."}></input>
               <br></br>
-              <label>Major: {major ? major : "Retrieving data"}</label>
+
+              <label class="setProfile">Major: {major ? major : "Retrieving data"}</label>
+              <label class="editProfile">Major:    </label><input id="newMajor" type='text' class="editProfile" placeholder={major ? major : "Retrieving data..."}></input>
+              <br/>
+              
+              <button type="button" id="editButton" class="editButton" width="50px" onClick={EditProfile}>Edit</button>
+              <button type="button" id="submitButton" class="submitButton" onClick={UpdateProfile}>Submit</button>
              </form>
 
       

@@ -43,6 +43,32 @@ body {
   margin-left: auto;
 }
 
+.setProfile {
+  display: initial;
+}
+
+.editProfile {
+  display: none;
+}
+
+.editButton {
+  width: 90px;
+  height: 30px;
+  font-size: 15px;
+  display: initial;
+  text-align: center;
+  padding: 0px; 
+}
+
+.submitButton {
+  width: 90px;
+  height: 30px;
+  font-size: 15px;
+  display: none;
+  text-align: center;
+  padding: 0px;
+}
+
 progress[value] {
   width: 250px;
   height: 20px;
