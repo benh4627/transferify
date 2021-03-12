@@ -98,7 +98,28 @@ function ClassCard(props) {
     );
 }
 
+function SimpleCard(props) {
+    const {currentUser} = useContext(AuthContext);
+
+    return(
+        <div className="box">
+            <b>{props.ClassData.className}</b>
+            <div>
+                <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.units} Units</Card.Subtitle>
+                <div className="description">
+                    <Card.Subtitle style={{marginBottom: '1.1rem'}}>{props.ClassData.classType}</Card.Subtitle>
+                    <Card.Text style={{ fontSize: '1.1rem'}}>{props.ClassData.classDescription}</Card.Text>
+                </div>
+                <div>
+                <Button className='remove' onClick={() => removeFromPrereqs(currentUser,props.ClassData.className)}>Remove</Button>
+            </div>
+            </div>
+        </div>
+    );
+}
+
 function ClassPlannerCard(props) {
+    const {currentUser} = useContext(AuthContext);
 
     return(
         <div className="box">
@@ -116,6 +137,7 @@ function ClassPlannerCard(props) {
                         <PrereqList prereqs = {props.ClassData.prereqs}/>
                     </div>
                 </div>
+                <Button className='removeFromPlanner' onClick={() => removeFromPlanner(currentUser,props.ClassData.className)}>Remove From Class Planner</Button>
             </div>
         </div>
     );
@@ -134,6 +156,31 @@ function getUserPrereqs(data) {
   var userPrereqsData = data.val();
   var key = Object.keys(userPrereqsData);
   userPrereqs = userPrereqsData[key];
+}
+
+function removeFromPlanner(currentUser, className) {
+    var database = firebase.database();
+    const classPlannerRef = database.ref("classplanner/" + currentUser.uid);
+    classPlannerRef.on("value", getClassPlanner);
+    var new_planner = "";
+    var currentClasses = classPlanner.split(',');
+    for (var i = 0; i < currentClasses.length; i++) {
+        if (className != currentClasses[i]) {
+            if (new_planner == "") {
+                new_planner = new_planner.concat(currentClasses[i]);
+            }
+            else {
+                new_planner = new_planner.concat("," + currentClasses[i]);
+            }
+        }
+    }
+    if (new_planner == "") {
+        classPlannerRef.set({classPlanner: "N/A"});
+    }
+    else {
+        classPlannerRef.set({classPlanner: new_planner});
+    }
+    alert("Removed class from Planner");
 }
 
 function addToPlanner(currentUser, className, prerequisites) {
@@ -199,7 +246,6 @@ function addToPlanner(currentUser, className, prerequisites) {
             classPlannerRef.set({classPlanner: classPlanner.concat("," + className)});
         }
         alert("ADDED TO PLANNER");
-
     }
 }
 
@@ -208,7 +254,16 @@ function addToPrereqs(currentUser, className) {
 
     const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
     userPrereqsRef.on("value", getUserPrereqs);
-    console.log(userPrereqs);
+
+    if (userPrereqs != "N/A" && userPrereqs != undefined) {
+        var currentPrereqs = userPrereqs.split(',');
+        for (var i = 0; i < currentPrereqs.length; i++) {
+            if (className == currentPrereqs[i]) {
+                alert("Error: Already added " + className + " to completed prereqs");
+                return;
+            }
+        }
+    }
 
     if (userPrereqs == "N/A" || userPrereqs == undefined) {
         userPrereqsRef.set({prereqs: className});
@@ -217,6 +272,31 @@ function addToPrereqs(currentUser, className) {
         userPrereqsRef.set({prereqs: userPrereqs.concat("," + className)});
     }
     alert("ADDED TO PREREQS");
+}
+
+function removeFromPrereqs(currentUser, className) {
+    var database = firebase.database();
+    const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
+    userPrereqsRef.on("value", getUserPrereqs);
+    var new_prereqs = "";
+    var currentList = userPrereqs.split(',');
+    for (var i = 0; i < currentList.length; i++) {
+        if (className != currentList[i]) {
+            if (new_prereqs == "") {
+                new_prereqs = new_prereqs.concat(currentList[i]);
+            }
+            else {
+                new_prereqs = new_prereqs.concat("," + currentList[i]);
+            }
+        }
+    }
+    if (new_prereqs == "") {
+        userPrereqsRef.set({userPrereqs: "N/A"});
+    }
+    else {
+        userPrereqsRef.set({userPrereqs: new_prereqs});
+    }
+    alert("Removed from Completed Courses")
 }
 
 function CompletedPrereqs(props) {
@@ -228,6 +308,8 @@ function CompletedPrereqs(props) {
     const userPrereqsRef = database.ref("prereqs/" + currentUser.uid);
     userPrereqsRef.on("value", getUserPrereqs);
 
+    if (userPrereqs == ",")
+        userPrereqs = "N/A";
     if (userPrereqs == "N/A" || userPrereqs == undefined) {
         return(
             <p style={{ paddingTop: '1.1rem', paddingBottom: '1.1rem'}}>No Completed Courses.  Update from classes below.</p>
@@ -246,8 +328,8 @@ function CompletedPrereqs(props) {
             }
         }
 
-        for (var i = 0; i < completedClassList; i++) {
-            listItems.push(<ClassPlannerCard ClassData = {completedClassList[i]}/>);
+        for (var i = 0; i < completedClassList.length; i++) {
+            listItems.push(<SimpleCard ClassData = {completedClassList[i]}/>);
         }
         return listItems;
     }
@@ -285,7 +367,6 @@ function CurrClasses(props) {
         }
         return listItems;
     }
-
 }
 
 function CardGroup(props) {
