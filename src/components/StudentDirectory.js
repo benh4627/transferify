@@ -152,7 +152,15 @@ function StudentDirectoryPage() {
             const major = majorVals[uidList[i]];
             const year = yearVals[uidList[i]];
             const imgRef = storage.ref("images/" + uidList[i]);
-            const imgUrl = imgRef.getDownloadURL().then(url => studentList.push((new student(name, email, major, year, url))));
+            imgRef.getMetadata().then(metadata => {
+                if (metadata.contentType == "application/octet-stream") {
+                    console.log(metadata.contentType);
+                    studentList.push((new student(name, email, major, year, blankPic)));
+                }
+                else
+                    var imgUrl = imgRef.getDownloadURL().then(url => studentList.push((new student(name, email, major, year, url))));
+            });
+            //const imgUrl = imgRef.getDownloadURL().then(url => studentList.push((new student(name, email, major, year, url))));
         }
     }, [uidList, urlList]);
 
