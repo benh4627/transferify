@@ -15,6 +15,7 @@ While our application is not planned to have a dedicated chat feature, the stude
 1. Download the repository onto your local machine.
 2. In your terminal, navigate to the src folder of the repository
 3. Run the following commands:\
+npm install\
 npm install --save-dev express cors\
 npm install react-bootstrap-validation --save\
 npm install react-router-dom --save\
