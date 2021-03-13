@@ -8,7 +8,7 @@ Transfer students often come into UCLA at a disadvantage when it comes to inform
 * User can organize planned courses with the information including prerequisites and difficulty.
 * User can meaningfully search through server data on the directory page.
 
-While our application is not planned to have a dedicated chat feature, there will be places to put contact information such as emails and social media usernames to encourage interaction.
+While our application is not planned to have a dedicated chat feature, the student directory page will display contact information of registered users to encourage interaction.
 
 
 # Commands to run Transferify locally
