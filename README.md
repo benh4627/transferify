@@ -18,8 +18,8 @@ While our application is not planned to have a dedicated chat feature, there wil
 npm install --save-dev express cors\
 npm install react-bootstrap-validation --save\
 npm install react-router-dom --save\
-npm install firebase
-npm install react-bootstrap bootstrap
+npm install firebase\
+npm install react-bootstrap bootstrap\
 npm start
 
 ## Available Scripts
