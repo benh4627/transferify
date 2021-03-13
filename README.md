@@ -1,3 +1,14 @@
+# Project Description 
+Transfer students often come into UCLA at a disadvantage when it comes to information and networking. As transfers ourselves, we thought it could be helpful to have a mini-networking platform for transfers to get information about classes. Our application, Transferify is a one-stop resource where new transfers can figure out their future course plans. The application have several featuring functions such as:
+* New users can create an account by inputting their email and a password.
+* App can personalize user profile including name, year, major, and picture.
+* Users who input their information will have this information saved on the back-end and retained for future use.
+* User can organize planned courses with the information including prerequisites and difficulty.
+* User can meaningfully search through server data on the directory page.
+
+While our application is not planned to have a dedicated chat feature, there will be places to put contact information such as emails and social media usernames to encourage interaction.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
