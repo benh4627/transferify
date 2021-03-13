@@ -1,4 +1,4 @@
-#Transferify
+# Transferify
 
 # Project Description
 Transfer students often come into UCLA at a disadvantage when it comes to information and networking. As transfers ourselves, we thought it could be helpful to have a mini-networking platform for transfers to get information about classes. Our application, Transferify is a one-stop resource where new transfers can figure out their future course plans. The application have several featuring functions such as:
