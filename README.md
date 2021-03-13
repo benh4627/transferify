@@ -1,12 +1,28 @@
-# Getting Started with Create React App
+# Transferify
+Created by: Kelly Zheng, Jeng-Gang Wang, Latisha Sumardy, Ben Hankin, Buddy Watson
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Run the following commands:\
+# Project Description
+Transfer students often come into UCLA at a disadvantage when it comes to information and networking. As transfers ourselves, we thought it could be helpful to have a mini-networking platform for transfers to get information about classes. Our application, Transferify is a one-stop resource where new transfers can figure out their future course plans. The application have several featuring functions such as:
+* New users can create an account by inputting their email and a password.
+* App can personalize user profile including name, year, major, and picture.
+* Users who input their information will have this information saved on the back-end and retained for future use.
+* User can organize planned courses with the information including prerequisites and difficulty.
+* User can meaningfully search through server data on the directory page.
+
+While our application is not planned to have a dedicated chat feature, the student directory page will display contact information of registered users to encourage interaction.
+
+
+# How to run Transferify locally
+1. Download the repository onto your local machine.
+2. In your terminal, navigate to the src folder of the repository
+3. Run the following commands:\
+npm install\
 npm install --save-dev express cors\
 npm install react-bootstrap-validation --save\
 npm install react-router-dom --save\
-npm install firebase
-npm install react-bootstrap bootstrap
+npm install firebase\
+npm install react-bootstrap bootstrap\
+npm start
 
 ## Available Scripts
 

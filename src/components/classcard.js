@@ -230,7 +230,7 @@ function addToPlanner(currentUser, className, prerequisites) {
                 }
             }
             else {
-                if (!split_userreqs.includes(split_reqs[i])) {
+                if (!split_userreqs.includes(split_reqs[i].trim())) {
                     alert("Error: Missing Required Prereq: " + split_reqs[i]);
                     needPrereqs = true;
                     break;
@@ -320,7 +320,7 @@ function CompletedPrereqs(props) {
         for (var i = 0; i < classNames.length; i++) {
             for (var j = 0; j < classList.length; j++) {
                 if (classNames[i] == classList[j].className) {
-                    let newClass = new ClassData(classList[j].className, classList[j].classType, classList[j].classDescription, 
+                    let newClass = new ClassData(classList[j].className, classList[j].classType, classList[j].classDescription,
                                                  classList[j].prereqs, classList[j].units, classList[j].difficulty);
                     completedClassList.push(newClass);
                     j = classList.length;
